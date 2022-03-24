@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="online.cunho.blog.dao.CunhoUserMapper">
+    <resultMap id="BaseResultMap" type="online.cunho.blog.entity.CunhoUser">
+        <id column="USER_ID" jdbcType="INTEGER" property="userId"/>
+        <result column="USERNAME" jdbcType="VARCHAR" property="username"/>
+        <result column="PASSWORD" jdbcType="VARCHAR" property="password"/>
+        <result column="USER_NICENAME" jdbcType="VARCHAR" property="userNicename"/>
+        <result column="USER_EMAIL" jdbcType="VARCHAR" property="userEmail"/>
+        <result column="USER_PHONE" jdbcType="VARCHAR" property="userPhone"/>
+        <result column="USER_WECHAT" jdbcType="VARCHAR" property="userWechat"/>
+        <result column="USER_QQ" jdbcType="VARCHAR" property="userQq"/>
+        <result column="USER_COUNTRY" jdbcType="VARCHAR" property="userCountry"/>
+        <result column="USER_CITY" jdbcType="VARCHAR" property="userCity"/>
+        <result column="USER_LEVEL" jdbcType="INTEGER" property="userLevel"/>
+        <result column="USER_STATUS" jdbcType="VARCHAR" property="userStatus"/>
+        <result column="OPTION01" jdbcType="VARCHAR" property="option01"/>
+        <result column="OPTION02" jdbcType="VARCHAR" property="option02"/>
+        <result column="OPTION03" jdbcType="VARCHAR" property="option03"/>
+        <result column="OPTION04" jdbcType="VARCHAR" property="option04"/>
+        <result column="OPTION05" jdbcType="VARCHAR" property="option05"/>
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        USER_ID
+        , USERNAME, `PASSWORD`, USER_NICENAME, USER_EMAIL, USER_PHONE, USER_WECHAT,
+    USER_QQ, USER_COUNTRY, USER_CITY, USER_LEVEL, USER_STATUS, OPTION01, OPTION02, OPTION03, 
+    OPTION04, OPTION05, CREATE_TIME, UPDATE_TIME
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cunho_user
+        where USER_ID = #{userId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from cunho_user
+        where USER_ID = #{userId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="online.cunho.blog.entity.CunhoUser">
+        insert into cunho_user (USER_ID, USERNAME, `PASSWORD`,
+                                USER_NICENAME, USER_EMAIL, USER_PHONE,
+                                USER_WECHAT, USER_QQ, USER_COUNTRY,
+                                USER_CITY, USER_LEVEL, USER_STATUS,
+                                OPTION01, OPTION02, OPTION03,
+                                OPTION04, OPTION05, CREATE_TIME,
+                                UPDATE_TIME)
+        values (#{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+                #{userNicename,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR},
+                #{userWechat,jdbcType=VARCHAR}, #{userQq,jdbcType=VARCHAR}, #{userCountry,jdbcType=VARCHAR},
+                #{userCity,jdbcType=VARCHAR}, #{userLevel,jdbcType=INTEGER}, #{userStatus,jdbcType=VARCHAR},
+                #{option01,jdbcType=VARCHAR}, #{option02,jdbcType=VARCHAR}, #{option03,jdbcType=VARCHAR},
+                #{option04,jdbcType=VARCHAR}, #{option05,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+                #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="online.cunho.blog.entity.CunhoUser">
+        insert into cunho_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                USER_ID,
+            </if>
+            <if test="username != null">
+                USERNAME,
+            </if>
+            <if test="password != null">
+                `PASSWORD`,
+            </if>
+            <if test="userNicename != null">
+                USER_NICENAME,
+            </if>
+            <if test="userEmail != null">
+                USER_EMAIL,
+            </if>
+            <if test="userPhone != null">
+                USER_PHONE,
+            </if>
+            <if test="userWechat != null">
+                USER_WECHAT,
+            </if>
+            <if test="userQq != null">
+                USER_QQ,
+            </if>
+            <if test="userCountry != null">
+                USER_COUNTRY,
+            </if>
+            <if test="userCity != null">
+                USER_CITY,
+            </if>
+            <if test="userLevel != null">
+                USER_LEVEL,
+            </if>
+            <if test="userStatus != null">
+                USER_STATUS,
+            </if>
+            <if test="option01 != null">
+                OPTION01,
+            </if>
+            <if test="option02 != null">
+                OPTION02,
+            </if>
+            <if test="option03 != null">
+                OPTION03,
+            </if>
+            <if test="option04 != null">
+                OPTION04,
+            </if>
+            <if test="option05 != null">
+                OPTION05,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="userNicename != null">
+                #{userNicename,jdbcType=VARCHAR},
+            </if>
+            <if test="userEmail != null">
+                #{userEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="userPhone != null">
+                #{userPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="userWechat != null">
+                #{userWechat,jdbcType=VARCHAR},
+            </if>
+            <if test="userQq != null">
+                #{userQq,jdbcType=VARCHAR},
+            </if>
+            <if test="userCountry != null">
+                #{userCountry,jdbcType=VARCHAR},
+            </if>
+            <if test="userCity != null">
+                #{userCity,jdbcType=VARCHAR},
+            </if>
+            <if test="userLevel != null">
+                #{userLevel,jdbcType=INTEGER},
+            </if>
+            <if test="userStatus != null">
+                #{userStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="option01 != null">
+                #{option01,jdbcType=VARCHAR},
+            </if>
+            <if test="option02 != null">
+                #{option02,jdbcType=VARCHAR},
+            </if>
+            <if test="option03 != null">
+                #{option03,jdbcType=VARCHAR},
+            </if>
+            <if test="option04 != null">
+                #{option04,jdbcType=VARCHAR},
+            </if>
+            <if test="option05 != null">
+                #{option05,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="online.cunho.blog.entity.CunhoUser">
+        update cunho_user
+        <set>
+            <if test="username != null">
+                USERNAME = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                `PASSWORD` = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="userNicename != null">
+                USER_NICENAME = #{userNicename,jdbcType=VARCHAR},
+            </if>
+            <if test="userEmail != null">
+                USER_EMAIL = #{userEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="userPhone != null">
+                USER_PHONE = #{userPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="userWechat != null">
+                USER_WECHAT = #{userWechat,jdbcType=VARCHAR},
+            </if>
+            <if test="userQq != null">
+                USER_QQ = #{userQq,jdbcType=VARCHAR},
+            </if>
+            <if test="userCountry != null">
+                USER_COUNTRY = #{userCountry,jdbcType=VARCHAR},
+            </if>
+            <if test="userCity != null">
+                USER_CITY = #{userCity,jdbcType=VARCHAR},
+            </if>
+            <if test="userLevel != null">
+                USER_LEVEL = #{userLevel,jdbcType=INTEGER},
+            </if>
+            <if test="userStatus != null">
+                USER_STATUS = #{userStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="option01 != null">
+                OPTION01 = #{option01,jdbcType=VARCHAR},
+            </if>
+            <if test="option02 != null">
+                OPTION02 = #{option02,jdbcType=VARCHAR},
+            </if>
+            <if test="option03 != null">
+                OPTION03 = #{option03,jdbcType=VARCHAR},
+            </if>
+            <if test="option04 != null">
+                OPTION04 = #{option04,jdbcType=VARCHAR},
+            </if>
+            <if test="option05 != null">
+                OPTION05 = #{option05,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where USER_ID = #{userId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="online.cunho.blog.entity.CunhoUser">
+        update cunho_user
+        set USERNAME      = #{username,jdbcType=VARCHAR},
+            `PASSWORD`    = #{password,jdbcType=VARCHAR},
+            USER_NICENAME = #{userNicename,jdbcType=VARCHAR},
+            USER_EMAIL    = #{userEmail,jdbcType=VARCHAR},
+            USER_PHONE    = #{userPhone,jdbcType=VARCHAR},
+            USER_WECHAT   = #{userWechat,jdbcType=VARCHAR},
+            USER_QQ       = #{userQq,jdbcType=VARCHAR},
+            USER_COUNTRY  = #{userCountry,jdbcType=VARCHAR},
+            USER_CITY     = #{userCity,jdbcType=VARCHAR},
+            USER_LEVEL    = #{userLevel,jdbcType=INTEGER},
+            USER_STATUS   = #{userStatus,jdbcType=VARCHAR},
+            OPTION01      = #{option01,jdbcType=VARCHAR},
+            OPTION02      = #{option02,jdbcType=VARCHAR},
+            OPTION03      = #{option03,jdbcType=VARCHAR},
+            OPTION04      = #{option04,jdbcType=VARCHAR},
+            OPTION05      = #{option05,jdbcType=VARCHAR},
+            CREATE_TIME   = #{createTime,jdbcType=TIMESTAMP},
+            UPDATE_TIME   = #{updateTime,jdbcType=TIMESTAMP}
+        where USER_ID = #{userId,jdbcType=INTEGER}
+    </update>
+</mapper>

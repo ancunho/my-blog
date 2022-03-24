@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="online.cunho.blog.dao.CunhoPostMapper">
+    <resultMap id="BaseResultMap" type="online.cunho.blog.entity.CunhoPost">
+        <id column="POST_ID" jdbcType="INTEGER" property="postId"/>
+        <result column="POST_CATEGORY" jdbcType="INTEGER" property="postCategory"/>
+        <result column="POST_AUTHOR" jdbcType="VARCHAR" property="postAuthor"/>
+        <result column="POST_TITLE" jdbcType="VARCHAR" property="postTitle"/>
+        <result column="POST_EXCERPT" jdbcType="VARCHAR" property="postExcerpt"/>
+        <result column="POST_CONTENT" jdbcType="VARCHAR" property="postContent"/>
+        <result column="POST_STATUS" jdbcType="CHAR" property="postStatus"/>
+        <result column="COMMENT_STATUS" jdbcType="CHAR" property="commentStatus"/>
+        <result column="POST_TYPE" jdbcType="VARCHAR" property="postType"/>
+        <result column="POST_PASSWORD" jdbcType="VARCHAR" property="postPassword"/>
+        <result column="POST_PARENT" jdbcType="INTEGER" property="postParent"/>
+        <result column="OPTION01" jdbcType="VARCHAR" property="option01"/>
+        <result column="OPTION02" jdbcType="VARCHAR" property="option02"/>
+        <result column="OPTION03" jdbcType="VARCHAR" property="option03"/>
+        <result column="OPTION04" jdbcType="VARCHAR" property="option04"/>
+        <result column="OPTION05" jdbcType="VARCHAR" property="option05"/>
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        POST_ID
+        , POST_CATEGORY, POST_AUTHOR, POST_TITLE, POST_EXCERPT, POST_CONTENT, POST_STATUS,
+    COMMENT_STATUS, POST_TYPE, POST_PASSWORD, POST_PARENT, OPTION01, OPTION02, OPTION03, 
+    OPTION04, OPTION05, CREATE_TIME, UPDATE_TIME
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cunho_post
+        where POST_ID = #{postId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from cunho_post
+        where POST_ID = #{postId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="online.cunho.blog.entity.CunhoPost">
+        insert into cunho_post (POST_ID, POST_CATEGORY, POST_AUTHOR,
+                                POST_TITLE, POST_EXCERPT, POST_CONTENT,
+                                POST_STATUS, COMMENT_STATUS, POST_TYPE,
+                                POST_PASSWORD, POST_PARENT, OPTION01,
+                                OPTION02, OPTION03, OPTION04,
+                                OPTION05, CREATE_TIME, UPDATE_TIME)
+        values (#{postId,jdbcType=INTEGER}, #{postCategory,jdbcType=INTEGER}, #{postAuthor,jdbcType=VARCHAR},
+                #{postTitle,jdbcType=VARCHAR}, #{postExcerpt,jdbcType=VARCHAR}, #{postContent,jdbcType=VARCHAR},
+                #{postStatus,jdbcType=CHAR}, #{commentStatus,jdbcType=CHAR}, #{postType,jdbcType=VARCHAR},
+                #{postPassword,jdbcType=VARCHAR}, #{postParent,jdbcType=INTEGER}, #{option01,jdbcType=VARCHAR},
+                #{option02,jdbcType=VARCHAR}, #{option03,jdbcType=VARCHAR}, #{option04,jdbcType=VARCHAR},
+                #{option05,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="online.cunho.blog.entity.CunhoPost">
+        insert into cunho_post
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="postId != null">
+                POST_ID,
+            </if>
+            <if test="postCategory != null">
+                POST_CATEGORY,
+            </if>
+            <if test="postAuthor != null">
+                POST_AUTHOR,
+            </if>
+            <if test="postTitle != null">
+                POST_TITLE,
+            </if>
+            <if test="postExcerpt != null">
+                POST_EXCERPT,
+            </if>
+            <if test="postContent != null">
+                POST_CONTENT,
+            </if>
+            <if test="postStatus != null">
+                POST_STATUS,
+            </if>
+            <if test="commentStatus != null">
+                COMMENT_STATUS,
+            </if>
+            <if test="postType != null">
+                POST_TYPE,
+            </if>
+            <if test="postPassword != null">
+                POST_PASSWORD,
+            </if>
+            <if test="postParent != null">
+                POST_PARENT,
+            </if>
+            <if test="option01 != null">
+                OPTION01,
+            </if>
+            <if test="option02 != null">
+                OPTION02,
+            </if>
+            <if test="option03 != null">
+                OPTION03,
+            </if>
+            <if test="option04 != null">
+                OPTION04,
+            </if>
+            <if test="option05 != null">
+                OPTION05,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="postId != null">
+                #{postId,jdbcType=INTEGER},
+            </if>
+            <if test="postCategory != null">
+                #{postCategory,jdbcType=INTEGER},
+            </if>
+            <if test="postAuthor != null">
+                #{postAuthor,jdbcType=VARCHAR},
+            </if>
+            <if test="postTitle != null">
+                #{postTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="postExcerpt != null">
+                #{postExcerpt,jdbcType=VARCHAR},
+            </if>
+            <if test="postContent != null">
+                #{postContent,jdbcType=VARCHAR},
+            </if>
+            <if test="postStatus != null">
+                #{postStatus,jdbcType=CHAR},
+            </if>
+            <if test="commentStatus != null">
+                #{commentStatus,jdbcType=CHAR},
+            </if>
+            <if test="postType != null">
+                #{postType,jdbcType=VARCHAR},
+            </if>
+            <if test="postPassword != null">
+                #{postPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="postParent != null">
+                #{postParent,jdbcType=INTEGER},
+            </if>
+            <if test="option01 != null">
+                #{option01,jdbcType=VARCHAR},
+            </if>
+            <if test="option02 != null">
+                #{option02,jdbcType=VARCHAR},
+            </if>
+            <if test="option03 != null">
+                #{option03,jdbcType=VARCHAR},
+            </if>
+            <if test="option04 != null">
+                #{option04,jdbcType=VARCHAR},
+            </if>
+            <if test="option05 != null">
+                #{option05,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="online.cunho.blog.entity.CunhoPost">
+        update cunho_post
+        <set>
+            <if test="postCategory != null">
+                POST_CATEGORY = #{postCategory,jdbcType=INTEGER},
+            </if>
+            <if test="postAuthor != null">
+                POST_AUTHOR = #{postAuthor,jdbcType=VARCHAR},
+            </if>
+            <if test="postTitle != null">
+                POST_TITLE = #{postTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="postExcerpt != null">
+                POST_EXCERPT = #{postExcerpt,jdbcType=VARCHAR},
+            </if>
+            <if test="postContent != null">
+                POST_CONTENT = #{postContent,jdbcType=VARCHAR},
+            </if>
+            <if test="postStatus != null">
+                POST_STATUS = #{postStatus,jdbcType=CHAR},
+            </if>
+            <if test="commentStatus != null">
+                COMMENT_STATUS = #{commentStatus,jdbcType=CHAR},
+            </if>
+            <if test="postType != null">
+                POST_TYPE = #{postType,jdbcType=VARCHAR},
+            </if>
+            <if test="postPassword != null">
+                POST_PASSWORD = #{postPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="postParent != null">
+                POST_PARENT = #{postParent,jdbcType=INTEGER},
+            </if>
+            <if test="option01 != null">
+                OPTION01 = #{option01,jdbcType=VARCHAR},
+            </if>
+            <if test="option02 != null">
+                OPTION02 = #{option02,jdbcType=VARCHAR},
+            </if>
+            <if test="option03 != null">
+                OPTION03 = #{option03,jdbcType=VARCHAR},
+            </if>
+            <if test="option04 != null">
+                OPTION04 = #{option04,jdbcType=VARCHAR},
+            </if>
+            <if test="option05 != null">
+                OPTION05 = #{option05,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where POST_ID = #{postId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="online.cunho.blog.entity.CunhoPost">
+        update cunho_post
+        set POST_CATEGORY  = #{postCategory,jdbcType=INTEGER},
+            POST_AUTHOR    = #{postAuthor,jdbcType=VARCHAR},
+            POST_TITLE     = #{postTitle,jdbcType=VARCHAR},
+            POST_EXCERPT   = #{postExcerpt,jdbcType=VARCHAR},
+            POST_CONTENT   = #{postContent,jdbcType=VARCHAR},
+            POST_STATUS    = #{postStatus,jdbcType=CHAR},
+            COMMENT_STATUS = #{commentStatus,jdbcType=CHAR},
+            POST_TYPE      = #{postType,jdbcType=VARCHAR},
+            POST_PASSWORD  = #{postPassword,jdbcType=VARCHAR},
+            POST_PARENT    = #{postParent,jdbcType=INTEGER},
+            OPTION01       = #{option01,jdbcType=VARCHAR},
+            OPTION02       = #{option02,jdbcType=VARCHAR},
+            OPTION03       = #{option03,jdbcType=VARCHAR},
+            OPTION04       = #{option04,jdbcType=VARCHAR},
+            OPTION05       = #{option05,jdbcType=VARCHAR},
+            CREATE_TIME    = #{createTime,jdbcType=TIMESTAMP},
+            UPDATE_TIME    = #{updateTime,jdbcType=TIMESTAMP}
+        where POST_ID = #{postId,jdbcType=INTEGER}
+    </update>
+</mapper>
