@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="include/meta::meta"></div>
+<title>Home</title>
+<body>
+<h2 id="intro">{{ introText }}</h2>
+</body>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                introText: 'asdfsadfsadf',
+            }
+        },
+        methods: {
+
+        }
+    }).mount("#intro")
+</script>
+</html>

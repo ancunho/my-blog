@@ -13,12 +13,12 @@ import org.springframework.core.env.Environment;
 @ComponentScan("online.cunho")
 @ServletComponentScan
 @MapperScan("online.cunho.blog.dao")
-public class MyBlogBackendApplication {
+public class MyBlogApplication {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MyBlogBackendApplication.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MyBlogApplication.class);
 
     public static void main(String[] args) {
-        SpringApplication app = new SpringApplication(MyBlogBackendApplication.class);
+        SpringApplication app = new SpringApplication(MyBlogApplication.class);
         Environment env = app.run(args).getEnvironment();
         LOG.info("启动成功！！");
         LOG.info("Blog地址: \thttp://127.0.0.1:{}", env.getProperty("server.port"));

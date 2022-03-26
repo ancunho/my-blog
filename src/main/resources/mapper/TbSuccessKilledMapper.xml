@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="online.cunho.blog.dao.TbSuccessKilledMapper">
+    <resultMap id="BaseResultMap" type="online.cunho.blog.entity.TbSuccessKilled">
+        <id column="SECKILL_ID" jdbcType="BIGINT" property="seckillId"/>
+        <id column="USER_PHONE" jdbcType="VARCHAR" property="userPhone"/>
+        <result column="STATUS" jdbcType="TINYINT" property="status"/>
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        SECKILL_ID
+        , USER_PHONE, `STATUS`, CREATE_TIME, UPDATE_TIME
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_success_killed
+        where SECKILL_ID = #{seckillId,jdbcType=BIGINT}
+        and USER_PHONE = #{userPhone,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="map">
+        delete
+        from tb_success_killed
+        where SECKILL_ID = #{seckillId,jdbcType=BIGINT}
+          and USER_PHONE = #{userPhone,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="online.cunho.blog.entity.TbSuccessKilled">
+        insert into tb_success_killed (SECKILL_ID, USER_PHONE, `STATUS`,
+                                       CREATE_TIME, UPDATE_TIME)
+        values (#{seckillId,jdbcType=BIGINT}, #{userPhone,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT},
+                #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="online.cunho.blog.entity.TbSuccessKilled">
+        insert into tb_success_killed
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="seckillId != null">
+                SECKILL_ID,
+            </if>
+            <if test="userPhone != null">
+                USER_PHONE,
+            </if>
+            <if test="status != null">
+                `STATUS`,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="seckillId != null">
+                #{seckillId,jdbcType=BIGINT},
+            </if>
+            <if test="userPhone != null">
+                #{userPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="online.cunho.blog.entity.TbSuccessKilled">
+        update tb_success_killed
+        <set>
+            <if test="status != null">
+                `STATUS` = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where SECKILL_ID = #{seckillId,jdbcType=BIGINT}
+        and USER_PHONE = #{userPhone,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="online.cunho.blog.entity.TbSuccessKilled">
+        update tb_success_killed
+        set `STATUS`    = #{status,jdbcType=TINYINT},
+            CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+        where SECKILL_ID = #{seckillId,jdbcType=BIGINT}
+          and USER_PHONE = #{userPhone,jdbcType=VARCHAR}
+    </update>
+
+    <insert id="insertSuccessKilled">
+        INSERT ignore INTO TB_SUCCESS_KILLED
+                (SECKILL_ID, USER_PHONE)
+        values (#{seckillId}, #{userPhone})
+    </insert>
+
+    <select id="getTbSuccessKilledByseckillIdWithSeckill" resultType="online.cunho.blog.entity.TbSuccessKilled">
+        SELECT  t1.SECKILL_ID
+                , t1.USER_PHONE, t1.`STATUS`, t1.CREATE_TIME, t1.UPDATE_TIME
+                , t2.SECKILL_ID as "tbSeckill.seckill_id"
+                , t2.SKU_ID as "tbSeckill.sku_id"
+                , t2.SKU_NAME as "tbSeckill.SKU_NAME"
+                , t2.QTY as "tbSeckill.QTY"
+                , t2.SECKILL_START_TIME as "tbSeckill.SECKILL_START_TIME"
+                , t2.SECKILL_END_TIME as "tbSeckill.SECKILL_END_TIME"
+                , t2.`STATUS`  as "tbSeckill.STATUS"
+                , t2.create_time  as "tbSeckill.create_time"
+        from tb_success_killed t1
+                inner join TB_SECKILL t2 on t1.SECKILL_ID = t2.SECKILL_ID
+        where   t2.seckill_id = #{seckillId}
+    </select>
+</mapper>

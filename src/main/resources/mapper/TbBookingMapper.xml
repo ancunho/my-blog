@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="online.cunho.blog.dao.TbBookingMapper">
+    <resultMap id="BaseResultMap" type="online.cunho.blog.entity.TbBooking">
+        <id column="BOOKING_ID" jdbcType="BIGINT" property="bookingId"/>
+        <result column="BOOKING_ORDER_NO" jdbcType="VARCHAR" property="bookingOrderNo"/>
+        <result column="BOOKING_ORDER_STATUS" jdbcType="VARCHAR" property="bookingOrderStatus"/>
+        <result column="BOOKING_TYPE" jdbcType="VARCHAR" property="bookingType"/>
+        <result column="SHOP_ID" jdbcType="INTEGER" property="shopId"/>
+        <result column="ROOM_ID" jdbcType="INTEGER" property="roomId"/>
+        <result column="CUSTOMER_ID" jdbcType="INTEGER" property="customerId"/>
+        <result column="BOOKING_PERSON_COUNT" jdbcType="VARCHAR" property="bookingPersonCount"/>
+        <result column="BOOKING_STARTDAY" jdbcType="VARCHAR" property="bookingStartday"/>
+        <result column="BOOKING_ENDDAY" jdbcType="VARCHAR" property="bookingEndday"/>
+        <result column="BOOKING_STARTTIME" jdbcType="VARCHAR" property="bookingStarttime"/>
+        <result column="BOOKING_ENDTIME" jdbcType="VARCHAR" property="bookingEndtime"/>
+        <result column="BOOKING_STATUS" jdbcType="VARCHAR" property="bookingStatus"/>
+        <result column="BOOKING_MOBILE" jdbcType="VARCHAR" property="bookingMobile"/>
+        <result column="BOOKING_PERSON_NAME" jdbcType="VARCHAR" property="bookingPersonName"/>
+        <result column="PAY_STATUS" jdbcType="VARCHAR" property="payStatus"/>
+        <result column="REMARK" jdbcType="VARCHAR" property="remark"/>
+        <result column="COMMENT" jdbcType="VARCHAR" property="comment"/>
+        <result column="CHANGE_USER_ID" jdbcType="INTEGER" property="changeUserId"/>
+        <result column="CHANGE_TIME" jdbcType="TIMESTAMP" property="changeTime"/>
+        <result column="CUSTOMER_CHANGE_TIME" jdbcType="TIMESTAMP" property="customerChangeTime"/>
+        <result column="BOOKING_TIME" jdbcType="TIMESTAMP" property="bookingTime"/>
+        <result column="OPTION01" jdbcType="VARCHAR" property="option01"/>
+        <result column="OPTION02" jdbcType="VARCHAR" property="option02"/>
+        <result column="OPTION03" jdbcType="VARCHAR" property="option03"/>
+        <result column="OPTION04" jdbcType="VARCHAR" property="option04"/>
+        <result column="OPTION05" jdbcType="VARCHAR" property="option05"/>
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        BOOKING_ID
+        , BOOKING_ORDER_NO, BOOKING_ORDER_STATUS, BOOKING_TYPE, SHOP_ID, ROOM_ID,
+    CUSTOMER_ID, BOOKING_PERSON_COUNT, BOOKING_STARTDAY, BOOKING_ENDDAY, BOOKING_STARTTIME, 
+    BOOKING_ENDTIME, BOOKING_STATUS, BOOKING_MOBILE, BOOKING_PERSON_NAME, PAY_STATUS, 
+    REMARK, `COMMENT`, CHANGE_USER_ID, CHANGE_TIME, CUSTOMER_CHANGE_TIME, BOOKING_TIME, 
+    OPTION01, OPTION02, OPTION03, OPTION04, OPTION05, CREATE_TIME, UPDATE_TIME
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_booking
+        where BOOKING_ID = #{bookingId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from tb_booking
+        where BOOKING_ID = #{bookingId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="online.cunho.blog.entity.TbBooking">
+        insert into tb_booking (BOOKING_ID, BOOKING_ORDER_NO, BOOKING_ORDER_STATUS,
+                                BOOKING_TYPE, SHOP_ID, ROOM_ID,
+                                CUSTOMER_ID, BOOKING_PERSON_COUNT, BOOKING_STARTDAY,
+                                BOOKING_ENDDAY, BOOKING_STARTTIME, BOOKING_ENDTIME,
+                                BOOKING_STATUS, BOOKING_MOBILE, BOOKING_PERSON_NAME,
+                                PAY_STATUS, REMARK, `COMMENT`,
+                                CHANGE_USER_ID, CHANGE_TIME, CUSTOMER_CHANGE_TIME,
+                                BOOKING_TIME, OPTION01, OPTION02,
+                                OPTION03, OPTION04, OPTION05,
+                                CREATE_TIME, UPDATE_TIME)
+        values (#{bookingId,jdbcType=BIGINT}, #{bookingOrderNo,jdbcType=VARCHAR},
+                #{bookingOrderStatus,jdbcType=VARCHAR},
+                #{bookingType,jdbcType=VARCHAR}, #{shopId,jdbcType=INTEGER}, #{roomId,jdbcType=INTEGER},
+                #{customerId,jdbcType=INTEGER}, #{bookingPersonCount,jdbcType=VARCHAR},
+                #{bookingStartday,jdbcType=VARCHAR},
+                #{bookingEndday,jdbcType=VARCHAR}, #{bookingStarttime,jdbcType=VARCHAR},
+                #{bookingEndtime,jdbcType=VARCHAR},
+                #{bookingStatus,jdbcType=VARCHAR}, #{bookingMobile,jdbcType=VARCHAR},
+                #{bookingPersonName,jdbcType=VARCHAR},
+                #{payStatus,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR},
+                #{changeUserId,jdbcType=INTEGER}, #{changeTime,jdbcType=TIMESTAMP},
+                #{customerChangeTime,jdbcType=TIMESTAMP},
+                #{bookingTime,jdbcType=TIMESTAMP}, #{option01,jdbcType=VARCHAR}, #{option02,jdbcType=VARCHAR},
+                #{option03,jdbcType=VARCHAR}, #{option04,jdbcType=VARCHAR}, #{option05,jdbcType=VARCHAR},
+                #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="online.cunho.blog.entity.TbBooking">
+        insert into tb_booking
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bookingId != null">
+                BOOKING_ID,
+            </if>
+            <if test="bookingOrderNo != null">
+                BOOKING_ORDER_NO,
+            </if>
+            <if test="bookingOrderStatus != null">
+                BOOKING_ORDER_STATUS,
+            </if>
+            <if test="bookingType != null">
+                BOOKING_TYPE,
+            </if>
+            <if test="shopId != null">
+                SHOP_ID,
+            </if>
+            <if test="roomId != null">
+                ROOM_ID,
+            </if>
+            <if test="customerId != null">
+                CUSTOMER_ID,
+            </if>
+            <if test="bookingPersonCount != null">
+                BOOKING_PERSON_COUNT,
+            </if>
+            <if test="bookingStartday != null">
+                BOOKING_STARTDAY,
+            </if>
+            <if test="bookingEndday != null">
+                BOOKING_ENDDAY,
+            </if>
+            <if test="bookingStarttime != null">
+                BOOKING_STARTTIME,
+            </if>
+            <if test="bookingEndtime != null">
+                BOOKING_ENDTIME,
+            </if>
+            <if test="bookingStatus != null">
+                BOOKING_STATUS,
+            </if>
+            <if test="bookingMobile != null">
+                BOOKING_MOBILE,
+            </if>
+            <if test="bookingPersonName != null">
+                BOOKING_PERSON_NAME,
+            </if>
+            <if test="payStatus != null">
+                PAY_STATUS,
+            </if>
+            <if test="remark != null">
+                REMARK,
+            </if>
+            <if test="comment != null">
+                `COMMENT`,
+            </if>
+            <if test="changeUserId != null">
+                CHANGE_USER_ID,
+            </if>
+            <if test="changeTime != null">
+                CHANGE_TIME,
+            </if>
+            <if test="customerChangeTime != null">
+                CUSTOMER_CHANGE_TIME,
+            </if>
+            <if test="option01 != null">
+                OPTION01,
+            </if>
+            <if test="option02 != null">
+                OPTION02,
+            </if>
+            <if test="option03 != null">
+                OPTION03,
+            </if>
+            <if test="option04 != null">
+                OPTION04,
+            </if>
+            <if test="option05 != null">
+                OPTION05,
+            </if>
+            BOOKING_TIME,
+            CREATE_TIME
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="bookingId != null">
+                #{bookingId,jdbcType=BIGINT},
+            </if>
+            <if test="bookingOrderNo != null">
+                #{bookingOrderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingOrderStatus != null">
+                #{bookingOrderStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingType != null">
+                #{bookingType,jdbcType=VARCHAR},
+            </if>
+            <if test="shopId != null">
+                #{shopId,jdbcType=INTEGER},
+            </if>
+            <if test="roomId != null">
+                #{roomId,jdbcType=INTEGER},
+            </if>
+            <if test="customerId != null">
+                #{customerId,jdbcType=INTEGER},
+            </if>
+            <if test="bookingPersonCount != null">
+                #{bookingPersonCount,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingStartday != null">
+                #{bookingStartday,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingEndday != null">
+                #{bookingEndday,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingStarttime != null">
+                #{bookingStarttime,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingEndtime != null">
+                #{bookingEndtime,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingStatus != null">
+                #{bookingStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingMobile != null">
+                #{bookingMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingPersonName != null">
+                #{bookingPersonName,jdbcType=VARCHAR},
+            </if>
+            <if test="payStatus != null">
+                #{payStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="comment != null">
+                #{comment,jdbcType=VARCHAR},
+            </if>
+            <if test="changeUserId != null">
+                #{changeUserId,jdbcType=INTEGER},
+            </if>
+            <if test="changeTime != null">
+                #{changeTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="customerChangeTime != null">
+                #{customerChangeTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="option01 != null">
+                #{option01,jdbcType=VARCHAR},
+            </if>
+            <if test="option02 != null">
+                #{option02,jdbcType=VARCHAR},
+            </if>
+            <if test="option03 != null">
+                #{option03,jdbcType=VARCHAR},
+            </if>
+            <if test="option04 != null">
+                #{option04,jdbcType=VARCHAR},
+            </if>
+            <if test="option05 != null">
+                #{option05,jdbcType=VARCHAR},
+            </if>
+            now(),
+            now()
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="online.cunho.blog.entity.TbBooking">
+        update tb_booking
+        <set>
+            <if test="bookingOrderNo != null">
+                BOOKING_ORDER_NO = #{bookingOrderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingOrderStatus != null">
+                BOOKING_ORDER_STATUS = #{bookingOrderStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingType != null">
+                BOOKING_TYPE = #{bookingType,jdbcType=VARCHAR},
+            </if>
+            <if test="shopId != null">
+                SHOP_ID = #{shopId,jdbcType=INTEGER},
+            </if>
+            <if test="roomId != null">
+                ROOM_ID = #{roomId,jdbcType=INTEGER},
+            </if>
+            <if test="customerId != null">
+                CUSTOMER_ID = #{customerId,jdbcType=INTEGER},
+            </if>
+            <if test="bookingPersonCount != null">
+                BOOKING_PERSON_COUNT = #{bookingPersonCount,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingStartday != null">
+                BOOKING_STARTDAY = #{bookingStartday,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingEndday != null">
+                BOOKING_ENDDAY = #{bookingEndday,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingStarttime != null">
+                BOOKING_STARTTIME = #{bookingStarttime,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingEndtime != null">
+                BOOKING_ENDTIME = #{bookingEndtime,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingStatus != null">
+                BOOKING_STATUS = #{bookingStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingMobile != null">
+                BOOKING_MOBILE = #{bookingMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingPersonName != null">
+                BOOKING_PERSON_NAME = #{bookingPersonName,jdbcType=VARCHAR},
+            </if>
+            <if test="payStatus != null">
+                PAY_STATUS = #{payStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                REMARK = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="comment != null">
+                `COMMENT` = #{comment,jdbcType=VARCHAR},
+            </if>
+            <if test="changeUserId != null">
+                CHANGE_USER_ID = #{changeUserId,jdbcType=INTEGER},
+            </if>
+            <if test="changeTime != null">
+                CHANGE_TIME = #{changeTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="customerChangeTime != null">
+                CUSTOMER_CHANGE_TIME = #{customerChangeTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="bookingTime != null">
+                BOOKING_TIME = #{bookingTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="option01 != null">
+                OPTION01 = #{option01,jdbcType=VARCHAR},
+            </if>
+            <if test="option02 != null">
+                OPTION02 = #{option02,jdbcType=VARCHAR},
+            </if>
+            <if test="option03 != null">
+                OPTION03 = #{option03,jdbcType=VARCHAR},
+            </if>
+            <if test="option04 != null">
+                OPTION04 = #{option04,jdbcType=VARCHAR},
+            </if>
+            <if test="option05 != null">
+                OPTION05 = #{option05,jdbcType=VARCHAR},
+            </if>
+            UPDATE_TIME = now()
+        </set>
+        where BOOKING_ID = #{bookingId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="online.cunho.blog.entity.TbBooking">
+        update tb_booking
+        set BOOKING_ORDER_NO     = #{bookingOrderNo,jdbcType=VARCHAR},
+            BOOKING_ORDER_STATUS = #{bookingOrderStatus,jdbcType=VARCHAR},
+            BOOKING_TYPE         = #{bookingType,jdbcType=VARCHAR},
+            SHOP_ID              = #{shopId,jdbcType=INTEGER},
+            ROOM_ID              = #{roomId,jdbcType=INTEGER},
+            CUSTOMER_ID          = #{customerId,jdbcType=INTEGER},
+            BOOKING_PERSON_COUNT = #{bookingPersonCount,jdbcType=VARCHAR},
+            BOOKING_STARTDAY     = #{bookingStartday,jdbcType=VARCHAR},
+            BOOKING_ENDDAY       = #{bookingEndday,jdbcType=VARCHAR},
+            BOOKING_STARTTIME    = #{bookingStarttime,jdbcType=VARCHAR},
+            BOOKING_ENDTIME      = #{bookingEndtime,jdbcType=VARCHAR},
+            BOOKING_STATUS       = #{bookingStatus,jdbcType=VARCHAR},
+            BOOKING_MOBILE       = #{bookingMobile,jdbcType=VARCHAR},
+            BOOKING_PERSON_NAME  = #{bookingPersonName,jdbcType=VARCHAR},
+            PAY_STATUS           = #{payStatus,jdbcType=VARCHAR},
+            REMARK               = #{remark,jdbcType=VARCHAR},
+            `COMMENT`            = #{comment,jdbcType=VARCHAR},
+            CHANGE_USER_ID       = #{changeUserId,jdbcType=INTEGER},
+            CHANGE_TIME          = #{changeTime,jdbcType=TIMESTAMP},
+            CUSTOMER_CHANGE_TIME = #{customerChangeTime,jdbcType=TIMESTAMP},
+            BOOKING_TIME         = #{bookingTime,jdbcType=TIMESTAMP},
+            OPTION01             = #{option01,jdbcType=VARCHAR},
+            OPTION02             = #{option02,jdbcType=VARCHAR},
+            OPTION03             = #{option03,jdbcType=VARCHAR},
+            OPTION04             = #{option04,jdbcType=VARCHAR},
+            OPTION05             = #{option05,jdbcType=VARCHAR},
+            UPDATE_TIME          = now()
+        where BOOKING_ID = #{bookingId,jdbcType=BIGINT}
+    </update>
+
+    <select id="getAllBookingList" parameterType="online.cunho.blog.dto.TbBookingDto" resultType="online.cunho.blog.dto.TbBookingDto">
+      SELECT    T1.BOOKING_ID
+               ,T1.BOOKING_ORDER_NO
+               ,T1.BOOKING_ORDER_STATUS
+               ,T1.BOOKING_TYPE
+               ,T1.SHOP_ID
+               ,(SELECT A1.SHOP_NAME FROM TB_SHOP A1 WHERE A1.SHOP_ID = T1.SHOP_ID) AS SHOP_NAME
+               ,T1.ROOM_ID
+               ,(SELECT A1.ROOM_NAME FROM TB_ROOM A1 WHERE A1.ROOM_ID = T1.ROOM_ID) AS ROOM_NAME
+               ,T1.CUSTOMER_ID
+               ,T1.BOOKING_PERSON_COUNT
+               ,T1.BOOKING_STARTDAY
+               ,T1.BOOKING_ENDDAY
+               ,T1.BOOKING_STARTTIME
+               ,T1.BOOKING_ENDTIME
+               ,T1.BOOKING_STATUS
+               ,(SELECT A1.CODE_NAME FROM TB_COMMON_CODE A1 WHERE A1.CODE_CD = T1.BOOKING_STATUS AND A1.CODE_TYPE = 'BOOKING_STATUS') AS BOOKING_STATUS_NAME
+               ,T1.BOOKING_MOBILE
+               ,T1.BOOKING_PERSON_NAME
+               ,T1.PAY_STATUS
+               ,T1.REMARK
+               ,T1.COMMENT
+               ,T1.CHANGE_USER_ID
+               ,T1.CHANGE_TIME
+               ,T1.CUSTOMER_CHANGE_TIME
+               ,T1.BOOKING_TIME
+               ,T1.OPTION01
+               ,T1.OPTION02
+               ,T1.OPTION03
+               ,T1.OPTION04
+               ,T1.OPTION05
+               ,DATE_FORMAT(T1.CREATE_TIME, '%Y-%m-%d %H:%i:%s') AS CREATE_TIME
+               ,DATE_FORMAT(T1.UPDATE_TIME, '%Y-%m-%d %H:%i:%s') AS UPDATE_TIME
+      FROM 	    TB_BOOKING T1
+      ORDER BY T1.CREATE_TIME DESC
+    </select>
+
+    <select id="getBookingInfoByBookingId" parameterType="java.lang.Integer" resultType="online.cunho.blog.dto.TbBookingDto">
+        SELECT    T1.BOOKING_ID
+                 ,T1.BOOKING_ORDER_NO
+                 ,T1.BOOKING_ORDER_STATUS
+                 ,T1.BOOKING_TYPE
+                 ,T1.SHOP_ID
+                 ,(SELECT A1.SHOP_NAME FROM TB_SHOP A1 WHERE A1.SHOP_ID = T1.SHOP_ID) AS SHOP_NAME
+                 ,T1.ROOM_ID
+                 ,(SELECT A1.ROOM_NAME FROM TB_ROOM A1 WHERE A1.ROOM_ID = T1.ROOM_ID) AS ROOM_NAME
+                 ,T1.CUSTOMER_ID
+                 ,T1.BOOKING_PERSON_COUNT
+                 ,T1.BOOKING_STARTDAY
+                 ,T1.BOOKING_ENDDAY
+                 ,T1.BOOKING_STARTTIME
+                 ,T1.BOOKING_ENDTIME
+                 ,T1.BOOKING_STATUS
+                 ,(SELECT A1.CODE_NAME FROM TB_COMMON_CODE A1 WHERE A1.CODE_CD = T1.BOOKING_STATUS AND A1.CODE_TYPE = 'BOOKING_STATUS') AS BOOKING_STATUS_NAME
+                 ,T1.BOOKING_MOBILE
+                 ,T1.BOOKING_PERSON_NAME
+                 ,T1.PAY_STATUS
+                 ,T1.REMARK
+                 ,T1.COMMENT
+                 ,T1.CHANGE_USER_ID
+                 ,T1.CHANGE_TIME
+                 ,T1.CUSTOMER_CHANGE_TIME
+                 ,T1.BOOKING_TIME
+                 ,T1.OPTION01
+                 ,T1.OPTION02
+                 ,T1.OPTION03
+                 ,T1.OPTION04
+                 ,T1.OPTION05
+                 ,DATE_FORMAT(T1.CREATE_TIME, '%Y-%m-%d %H:%i:%s') AS CREATE_TIME
+                 ,DATE_FORMAT(T1.UPDATE_TIME, '%Y-%m-%d %H:%i:%s') AS UPDATE_TIME
+        FROM 	 TB_BOOKING T1
+        WHERE    T1.BOOKING_ID = #{bookingId}
+    </select>
+
+</mapper>

@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="online.cunho.blog.dao.TbShopMapper">
+    <resultMap id="BaseResultMap" type="online.cunho.blog.entity.TbShop">
+        <id column="SHOP_ID" jdbcType="INTEGER" property="shopId"/>
+        <result column="SHOP_NAME" jdbcType="VARCHAR" property="shopName"/>
+        <result column="SHOP_INTRO" jdbcType="VARCHAR" property="shopIntro"/>
+        <result column="MANAGER_NAME" jdbcType="VARCHAR" property="managerName"/>
+        <result column="MANAGER_MOBILE" jdbcType="VARCHAR" property="managerMobile"/>
+        <result column="SHOP_MOBILE" jdbcType="VARCHAR" property="shopMobile"/>
+        <result column="SHOP_STATUS" jdbcType="VARCHAR" property="shopStatus"/>
+        <result column="SHOP_PROVINCE" jdbcType="VARCHAR" property="shopProvince"/>
+        <result column="SHOP_CITY" jdbcType="VARCHAR" property="shopCity"/>
+        <result column="SHOP_DISTRICT" jdbcType="VARCHAR" property="shopDistrict"/>
+        <result column="SHOP_ADDRESS" jdbcType="VARCHAR" property="shopAddress"/>
+        <result column="SHOP_IMAGE" jdbcType="VARCHAR" property="shopImage"/>
+        <result column="OPTION01" jdbcType="VARCHAR" property="option01"/>
+        <result column="OPTION02" jdbcType="VARCHAR" property="option02"/>
+        <result column="OPTION03" jdbcType="VARCHAR" property="option03"/>
+        <result column="OPTION04" jdbcType="VARCHAR" property="option04"/>
+        <result column="OPTION05" jdbcType="VARCHAR" property="option05"/>
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        SHOP_ID
+        , SHOP_NAME, SHOP_INTRO, MANAGER_NAME, MANAGER_MOBILE, SHOP_MOBILE, SHOP_STATUS,
+        SHOP_PROVINCE, SHOP_CITY, SHOP_DISTRICT, SHOP_ADDRESS, SHOP_IMAGE, OPTION01, OPTION02, OPTION03,
+        OPTION04, OPTION05, CREATE_TIME, UPDATE_TIME
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_shop
+        where SHOP_ID = #{shopId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from tb_shop
+        where SHOP_ID = #{shopId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="online.cunho.blog.entity.TbShop">
+        insert into tb_shop (SHOP_ID, SHOP_NAME, SHOP_INTRO,
+                             MANAGER_NAME, MANAGER_MOBILE, SHOP_MOBILE,
+                             SHOP_STATUS, SHOP_PROVINCE, SHOP_CITY,
+                             SHOP_DISTRICT, SHOP_ADDRESS, SHOP_IMAGE, OPTION01,
+                             OPTION02, OPTION03, OPTION04,
+                             OPTION05, CREATE_TIME, UPDATE_TIME)
+        values (#{shopId,jdbcType=INTEGER}, #{shopName,jdbcType=VARCHAR}, #{shopIntro,jdbcType=VARCHAR},
+                #{managerName,jdbcType=VARCHAR}, #{managerMobile,jdbcType=VARCHAR}, #{shopMobile,jdbcType=VARCHAR},
+                #{shopStatus,jdbcType=VARCHAR}, #{shopProvince,jdbcType=VARCHAR}, #{shopCity,jdbcType=VARCHAR},
+                #{shopDistrict,jdbcType=VARCHAR}, #{shopAddress,jdbcType=VARCHAR}, #{shopImage,jdbcType=VARCHAR}, #{option01,jdbcType=VARCHAR},
+                #{option02,jdbcType=VARCHAR}, #{option03,jdbcType=VARCHAR}, #{option04,jdbcType=VARCHAR},
+                #{option05,jdbcType=VARCHAR}, now(), #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="online.cunho.blog.entity.TbShop">
+        insert into tb_shop
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="shopId != null">
+                SHOP_ID,
+            </if>
+            <if test="shopName != null">
+                SHOP_NAME,
+            </if>
+            <if test="shopIntro != null">
+                SHOP_INTRO,
+            </if>
+            <if test="managerName != null">
+                MANAGER_NAME,
+            </if>
+            <if test="managerMobile != null">
+                MANAGER_MOBILE,
+            </if>
+            <if test="shopMobile != null">
+                SHOP_MOBILE,
+            </if>
+            <if test="shopStatus != null">
+                SHOP_STATUS,
+            </if>
+            <if test="shopProvince != null">
+                SHOP_PROVINCE,
+            </if>
+            <if test="shopCity != null">
+                SHOP_CITY,
+            </if>
+            <if test="shopDistrict != null">
+                SHOP_DISTRICT,
+            </if>
+            <if test="shopAddress != null">
+                SHOP_ADDRESS,
+            </if>
+            <if test="shopImage != null">
+                SHOP_IMAGE,
+            </if>
+            <if test="option01 != null">
+                OPTION01,
+            </if>
+            <if test="option02 != null">
+                OPTION02,
+            </if>
+            <if test="option03 != null">
+                OPTION03,
+            </if>
+            <if test="option04 != null">
+                OPTION04,
+            </if>
+            <if test="option05 != null">
+                OPTION05,
+            </if>
+            CREATE_TIME
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="shopId != null">
+                #{shopId,jdbcType=INTEGER},
+            </if>
+            <if test="shopName != null">
+                #{shopName,jdbcType=VARCHAR},
+            </if>
+            <if test="shopIntro != null">
+                #{shopIntro,jdbcType=VARCHAR},
+            </if>
+            <if test="managerName != null">
+                #{managerName,jdbcType=VARCHAR},
+            </if>
+            <if test="managerMobile != null">
+                #{managerMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="shopMobile != null">
+                #{shopMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="shopStatus != null">
+                #{shopStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="shopProvince != null">
+                #{shopProvince,jdbcType=VARCHAR},
+            </if>
+            <if test="shopCity != null">
+                #{shopCity,jdbcType=VARCHAR},
+            </if>
+            <if test="shopDistrict != null">
+                #{shopDistrict,jdbcType=VARCHAR},
+            </if>
+            <if test="shopAddress != null">
+                #{shopAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="shopImage != null">
+                #{shopImage,jdbcType=VARCHAR},
+            </if>
+            <if test="option01 != null">
+                #{option01,jdbcType=VARCHAR},
+            </if>
+            <if test="option02 != null">
+                #{option02,jdbcType=VARCHAR},
+            </if>
+            <if test="option03 != null">
+                #{option03,jdbcType=VARCHAR},
+            </if>
+            <if test="option04 != null">
+                #{option04,jdbcType=VARCHAR},
+            </if>
+            <if test="option05 != null">
+                #{option05,jdbcType=VARCHAR},
+            </if>
+            now()
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="online.cunho.blog.entity.TbShop">
+        update tb_shop
+        <set>
+            <if test="shopName != null">
+                SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+            </if>
+            <if test="shopIntro != null">
+                SHOP_INTRO = #{shopIntro,jdbcType=VARCHAR},
+            </if>
+            <if test="managerName != null">
+                MANAGER_NAME = #{managerName,jdbcType=VARCHAR},
+            </if>
+            <if test="managerMobile != null">
+                MANAGER_MOBILE = #{managerMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="shopMobile != null">
+                SHOP_MOBILE = #{shopMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="shopStatus != null">
+                SHOP_STATUS = #{shopStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="shopProvince != null">
+                SHOP_PROVINCE = #{shopProvince,jdbcType=VARCHAR},
+            </if>
+            <if test="shopCity != null">
+                SHOP_CITY = #{shopCity,jdbcType=VARCHAR},
+            </if>
+            <if test="shopDistrict != null">
+                SHOP_DISTRICT = #{shopDistrict,jdbcType=VARCHAR},
+            </if>
+            <if test="shopAddress != null">
+                SHOP_ADDRESS = #{shopAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="shopImage != null">
+                SHOP_IMAGE = #{shopImage,jdbcType=VARCHAR},
+            </if>
+            <if test="option01 != null">
+                OPTION01 = #{option01,jdbcType=VARCHAR},
+            </if>
+            <if test="option02 != null">
+                OPTION02 = #{option02,jdbcType=VARCHAR},
+            </if>
+            <if test="option03 != null">
+                OPTION03 = #{option03,jdbcType=VARCHAR},
+            </if>
+            <if test="option04 != null">
+                OPTION04 = #{option04,jdbcType=VARCHAR},
+            </if>
+            <if test="option05 != null">
+                OPTION05 = #{option05,jdbcType=VARCHAR},
+            </if>
+            UPDATE_TIME = now()
+        </set>
+        where SHOP_ID = #{shopId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="online.cunho.blog.entity.TbShop">
+        update tb_shop
+        set SHOP_NAME      = #{shopName,jdbcType=VARCHAR},
+            SHOP_INTRO     = #{shopIntro,jdbcType=VARCHAR},
+            MANAGER_NAME   = #{managerName,jdbcType=VARCHAR},
+            MANAGER_MOBILE = #{managerMobile,jdbcType=VARCHAR},
+            SHOP_MOBILE    = #{shopMobile,jdbcType=VARCHAR},
+            SHOP_STATUS    = #{shopStatus,jdbcType=VARCHAR},
+            SHOP_PROVINCE  = #{shopProvince,jdbcType=VARCHAR},
+            SHOP_CITY      = #{shopCity,jdbcType=VARCHAR},
+            SHOP_DISTRICT  = #{shopDistrict,jdbcType=VARCHAR},
+            SHOP_ADDRESS   = #{shopAddress,jdbcType=VARCHAR},
+            SHOP_IMAGE   = #{shopImage,jdbcType=VARCHAR},
+            OPTION01       = #{option01,jdbcType=VARCHAR},
+            OPTION02       = #{option02,jdbcType=VARCHAR},
+            OPTION03       = #{option03,jdbcType=VARCHAR},
+            OPTION04       = #{option04,jdbcType=VARCHAR},
+            OPTION05       = #{option05,jdbcType=VARCHAR},
+            CREATE_TIME    = #{createTime,jdbcType=TIMESTAMP},
+            UPDATE_TIME    = now()
+        where SHOP_ID = #{shopId,jdbcType=INTEGER}
+    </update>
+
+    <select id="isExistShopName" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT  1
+        FROM    TB_SHOP T1
+        WHERE   T1.SHOP_NAME = #{shopName}
+        <if test="shopId != null">
+            AND T1.SHOP_ID != #{shopId}
+        </if>
+    </select>
+
+    <select id="getAllShopList" resultType="online.cunho.blog.dto.TbShopDto">
+        SELECT 	ROW_NUMBER() OVER() AS RN
+                ,T1.SHOP_ID
+                ,T1.SHOP_NAME
+                ,T1.SHOP_INTRO
+                ,T1.MANAGER_NAME
+                ,T1.MANAGER_MOBILE
+                ,T1.SHOP_MOBILE
+                ,T1.SHOP_STATUS
+                ,CASE WHEN T1.SHOP_STATUS = 1 THEN '使用中' WHEN T1.SHOP_STATUS = 0 THEN '禁用' ELSE '-' END AS STATUS_NAME
+                ,T1.SHOP_PROVINCE
+                ,T1.SHOP_CITY
+                ,T1.SHOP_DISTRICT
+                ,T1.SHOP_ADDRESS
+                ,T1.OPTION01
+                ,T1.OPTION02
+                ,T1.OPTION03
+                ,T1.OPTION04
+                ,T1.OPTION05
+                ,DATE_FORMAT(T1.CREATE_TIME, '%Y-%m-%d') AS CREATE_TIME
+                ,DATE_FORMAT(T1.UPDATE_TIME, '%Y-%m-%d') AS UPDATE_TIME
+        FROM	TB_SHOP T1
+    </select>
+
+    <select id="getShopInfoByShopId" parameterType="java.lang.Integer" resultType="online.cunho.blog.dto.TbShopDto">
+        SELECT 	T1.SHOP_ID
+                ,T1.SHOP_NAME
+                ,T1.SHOP_INTRO
+                ,T1.MANAGER_NAME
+                ,T1.MANAGER_MOBILE
+                ,T1.SHOP_MOBILE
+                ,T1.SHOP_STATUS
+                ,CASE WHEN T1.SHOP_STATUS = 1 THEN '使用中' WHEN T1.SHOP_STATUS = 0 THEN '禁用' ELSE '-' END AS STATUS_NAME
+                ,T1.SHOP_PROVINCE
+                ,T1.SHOP_CITY
+                ,T1.SHOP_DISTRICT
+                ,T1.SHOP_ADDRESS
+                ,T1.OPTION01
+                ,T1.OPTION02
+                ,T1.OPTION03
+                ,T1.OPTION04
+                ,T1.OPTION05
+                ,DATE_FORMAT(T1.CREATE_TIME, '%Y-%m-%d') AS CREATE_TIME
+                ,DATE_FORMAT(T1.UPDATE_TIME, '%Y-%m-%d') AS UPDATE_TIME
+        FROM	TB_SHOP T1
+        WHERE   T1.SHOP_ID = #{shopId}
+    </select>
+
+</mapper>
