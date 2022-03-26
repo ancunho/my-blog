@@ -23,7 +23,7 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/file/handle")
+@RequestMapping(value = "/api/file/handle")
 public class FileController {
 
     @Autowired

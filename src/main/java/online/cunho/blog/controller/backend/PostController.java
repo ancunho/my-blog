@@ -7,8 +7,8 @@ import online.cunho.blog.dto.TbPostDto;
 import online.cunho.blog.entity.TbPost;
 import online.cunho.blog.service.BlogCategoryService;
 import online.cunho.blog.service.PostService;
-import online.cunho.blog.util.JwtProperties;
-import online.cunho.blog.util.JwtTokenUtil;
+//import online.cunho.blog.util.JwtProperties;
+//import online.cunho.blog.util.JwtTokenUtil;
 import com.github.pagehelper.PageHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -21,14 +21,14 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/post")
+@RequestMapping(value = "/api/post")
 public class PostController {
 
-    @Resource
-    private JwtTokenUtil jwtTokenUtil;
-
-    @Resource
-    private JwtProperties jwtProperties;
+//    @Resource
+//    private JwtTokenUtil jwtTokenUtil;
+//
+//    @Resource
+//    private JwtProperties jwtProperties;
 
     @Autowired
     private PostService postService;
@@ -65,8 +65,9 @@ public class PostController {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
         }
 
-        String authToken = request.getHeader(jwtProperties.getHeader());
-        String username = jwtTokenUtil.getUsernameFromToken(authToken);
+        //TODO
+//        String authToken = request.getHeader(jwtProperties.getHeader());
+//        String username = jwtTokenUtil.getUsernameFromToken(authToken);
 
         try {
             if (tbPostDto.getPostId() == null || "".equals(tbPostDto.getPostId())) {
@@ -80,7 +81,7 @@ public class PostController {
                 tbPost.setEventEndTime(tbPostDto.getEventEndTime());
                 tbPost.setPostThumbnailBig(tbPostDto.getPostThumbnailBig());
                 tbPost.setPostThumbnailSmall(tbPostDto.getPostThumbnailSmall());
-                tbPost.setPostAuthor(username);
+                tbPost.setPostAuthor("username");
                 tbPost.setIsJoin(tbPostDto.getIsJoin());
                 tbPost.setIsNeedPay(tbPostDto.getIsNeedPay());
                 tbPost.setPostPrice(tbPostDto.getPostPrice());

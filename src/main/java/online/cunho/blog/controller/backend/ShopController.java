@@ -18,7 +18,7 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/shop")
+@RequestMapping(value = "/api/shop")
 public class ShopController {
 
     @Autowired

@@ -22,7 +22,7 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/customer")
+@RequestMapping(value = "/api/customer")
 public class CustomerController {
 
     @Autowired
@@ -175,7 +175,7 @@ public class CustomerController {
      * @param customerId
      * @return
      */
-    @GetMapping(value = "/info")
+    @GetMapping(value = "/api/info")
     public BaseResponse getCustomerInfoByCustomerId(@RequestParam("customerId") Integer customerId) {
         if (customerId == null) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
