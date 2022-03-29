@@ -16,8 +16,8 @@ public class CunhoInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 //        return HandlerInterceptor.super.preHandle(request, response, handler);
-        System.out.println("执行preHandler..." + request.getRemoteAddr() + request.getRemoteUser());
-        System.out.println(">>>>..." + request.getHeader("User-Agent") + "||" + request.getHeader("Referer") + "||" + request.getRequestURI() + "||" + request.getRequestURL() + "||" + request.getRemoteUser());
+//        System.out.println("执行preHandler..." + request.getRemoteAddr() + request.getRemoteUser());
+//        System.out.println(">>>>..." + request.getHeader("User-Agent") + "||" + request.getHeader("Referer") + "||" + request.getRequestURI() + "||" + request.getRequestURL() + "||" + request.getRemoteUser());
         return true;
     }
 

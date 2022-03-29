@@ -16,7 +16,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/api/room")
+@RequestMapping(value = "/backend/room")
 public class RoomController {
 
     @Autowired

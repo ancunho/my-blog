@@ -21,7 +21,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/api/post")
+@RequestMapping(value = "/backend/post")
 public class PostController {
 
 //    @Resource

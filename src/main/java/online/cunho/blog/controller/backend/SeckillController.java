@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/api/seckill")
+@RequestMapping(value = "/backend/seckill")
 public class SeckillController {
 
     @Resource

@@ -23,7 +23,7 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/api/file/handle")
+@RequestMapping(value = "/backend/file/handle")
 public class FileController {
 
     @Autowired
@@ -57,7 +57,6 @@ public class FileController {
         Map<String, Object> result = new HashMap<>();
         //Const.UPLOAD_IMAGE_MAX_SIZE : 2MB
         Map<String, Object> imageMap = new HashMap<>();
-        System.out.println(">>>>tbFileListDto:" + tbFileListDto.toString());
         if (file.getSize() > 0 && file.getSize() <= (Const.UPLOAD_IMAGE_MAX_SIZE * 20)) {
             imageMap = aliyunService.uploadImageReturnURL(file);
             result.put("errno", 0);

@@ -39,7 +39,7 @@ public class CommonController {
     @Autowired
     private CommonService commonService;
 
-    @GetMapping("/api/captcha")
+    @GetMapping("/backend/captcha")
     public BaseResponse captcha(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String captchaCode = producer.createText();
         String captchaKey = UUID.randomUUID().toString();
@@ -68,7 +68,7 @@ public class CommonController {
     }
 
 //    @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping(value = "/api/code/proc")
+    @PostMapping(value = "/backend/code/proc")
     public BaseResponse modifyTbCommonCode(HttpServletRequest request, @RequestBody TbCommonCodeDto tbCommonCodeDto) {
         if (StringUtils.isEmpty(tbCommonCodeDto.getCodeName())
             || StringUtils.isEmpty(tbCommonCodeDto.getCodeCd())
@@ -125,14 +125,14 @@ public class CommonController {
         }
     }
 
-    @GetMapping(value = "/api/code/list")
+    @GetMapping(value = "/backend/code/list")
     public BaseResponse getAllTbCommonCodeList(BaseRequest baseRequest) {
         PageHelper.startPage(baseRequest.getPage(), baseRequest.getLimit());
         List<TbCommonCodeDto> returnData = commonService.getAllTbCommonCodeList();
         return BaseResponse.valueOfSuccessList(returnData);
     }
 
-    @GetMapping(value = "/api/code/info")
+    @GetMapping(value = "/backend/code/info")
     public BaseResponse getTbCommonCodeInfoByCodeId(@RequestParam("codeId") Integer codeId) {
         if (codeId == null) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -142,7 +142,7 @@ public class CommonController {
         return BaseResponse.valueOfSuccess(tbCommonCodeDto);
     }
 
-    @GetMapping(value = "/api/code/type/list")
+    @GetMapping(value = "/backend/code/type/list")
     public BaseResponse lstTbCommonCodeByCodeType(@RequestParam("codeType") String codeType) {
         if (codeType == null || StringUtils.isEmpty(codeType)) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());

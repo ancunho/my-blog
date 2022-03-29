@@ -22,7 +22,7 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/api/config")
+@RequestMapping(value = "/backend/config")
 public class RoleMenuController {
 
     @Autowired

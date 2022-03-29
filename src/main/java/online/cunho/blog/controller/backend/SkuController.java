@@ -16,7 +16,7 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/backend")
 public class SkuController {
 
     @Autowired

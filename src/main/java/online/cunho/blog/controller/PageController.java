@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Slf4j
 @Controller
-@RequestMapping(value = "")
+@RequestMapping(value = "/backend/page/")
 public class PageController {
 
     @RequestMapping("/error_500")
@@ -28,6 +28,11 @@ public class PageController {
     @GetMapping(value = "/intro")
     public String page_intro(HttpServletRequest request, Model model) {
         return "intro";
+    }
+
+    @GetMapping(value = "/management")
+    public String page_admin(HttpServletRequest request, Model model) {
+        return "admin_index";
     }
 
 }
