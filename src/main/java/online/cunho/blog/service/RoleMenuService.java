@@ -36,6 +36,7 @@ public interface RoleMenuService {
     public Boolean insertSysUser(SysUser sysUser);
     public Boolean updateSysUser(SysUser sysUser);
     List<SysUserDto> getRoleListByUserSeq(Integer userSeq);
+    public SysUserDto getSysUserByUsernameAndPassword(SysUserDto sysUserDto);
     public void deleteSysUserRoleByUserSeq(Integer userSeq);
 
     public Boolean insertSysUserRoleByUserSeqRoleIds(Map<String, Object> mapParams);

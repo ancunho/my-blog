@@ -1,5 +1,6 @@
 package online.cunho.blog.controller.backend;
 
+import online.cunho.blog.annotation.AdminUserLogin;
 import online.cunho.blog.common.BaseResponse;
 import online.cunho.blog.common.ResponseCode;
 import online.cunho.blog.dto.BaseRequest;
@@ -34,6 +35,7 @@ public class CustomerController {
      * @param tbCustomerDto
      * @return
      */
+    @AdminUserLogin
     @PostMapping(value = "/proc")
     public BaseResponse procTB_CUSTOMER(BaseRequest baseRequest, @RequestBody TbCustomerDto tbCustomerDto) {
         if (StringUtils.isEmpty(tbCustomerDto.getMobileNo())) {
@@ -163,6 +165,7 @@ public class CustomerController {
      * @param baseRequest
      * @return
      */
+    @AdminUserLogin
     @GetMapping(value = "/list")
     public BaseResponse getAllCustomerList(BaseRequest baseRequest) {
         PageHelper.startPage(baseRequest.getPage(), baseRequest.getLimit());
@@ -175,6 +178,7 @@ public class CustomerController {
      * @param customerId
      * @return
      */
+    @AdminUserLogin
     @GetMapping(value = "/info")
     public BaseResponse getCustomerInfoByCustomerId(@RequestParam("customerId") Integer customerId) {
         if (customerId == null) {
@@ -207,6 +211,7 @@ public class CustomerController {
      * @param customerId
      * @return
      */
+    @AdminUserLogin
     @GetMapping(value = "/booking/list")
     public BaseResponse getBookingListByCustomerId(BaseRequest baseRequest, @RequestParam("customerId") Integer customerId) {
         if (customerId == null) {
@@ -224,6 +229,7 @@ public class CustomerController {
      * @param customerId
      * @return
      */
+    @AdminUserLogin
     @GetMapping(value = "/pay/list")
     public BaseResponse getPayListByCustomerId(BaseRequest baseRequest, @RequestParam("customerId") Integer customerId) {
         if (customerId == null) {

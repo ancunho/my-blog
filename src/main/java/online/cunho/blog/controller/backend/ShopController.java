@@ -1,5 +1,6 @@
 package online.cunho.blog.controller.backend;
 
+import online.cunho.blog.annotation.AdminUserLogin;
 import online.cunho.blog.common.BaseResponse;
 import online.cunho.blog.common.ResponseCode;
 import online.cunho.blog.dto.BaseRequest;
@@ -25,6 +26,7 @@ public class ShopController {
     private ShopService shopService;
 
     @PostMapping(value = "/proc")
+    @AdminUserLogin
     public BaseResponse procTB_SHOP(BaseRequest baseRequest, @RequestBody TbShopDto tbShopDto) {
         if (StringUtils.isEmpty(tbShopDto.getShopName())) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -107,6 +109,7 @@ public class ShopController {
      * @return
      */
     @GetMapping(value = "/list")
+    @AdminUserLogin
     public BaseResponse getAllShopList(BaseRequest baseRequest) {
         PageHelper.startPage(baseRequest.getPage(), baseRequest.getLimit());
         List<TbShopDto> returnData = shopService.getAllShopList();
@@ -119,6 +122,7 @@ public class ShopController {
      * @return
      */
     @GetMapping(value = "/info")
+    @AdminUserLogin
     public BaseResponse getShopInfoByShopId(@RequestParam("shopId") Integer shopId) {
         if (shopId == null) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -134,6 +138,7 @@ public class ShopController {
      * @return
      */
     @GetMapping(value = "/delete")
+    @AdminUserLogin
     public BaseResponse deleteShopByShopId(@RequestParam("shopId") Integer shopId) {
         if (shopId == null) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());

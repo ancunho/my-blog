@@ -1,5 +1,6 @@
 package online.cunho.blog.controller.backend;
 
+import online.cunho.blog.annotation.AdminUserLogin;
 import online.cunho.blog.common.BaseResponse;
 import online.cunho.blog.common.ResponseCode;
 import online.cunho.blog.dto.*;
@@ -33,6 +34,7 @@ public class RoleMenuController {
      * @return
      */
     @GetMapping("/menu/list")
+    @AdminUserLogin
     public BaseResponse getAllSysMenuList(HttpServletRequest request, BaseRequest baseRequest) {
         PageHelper.startPage(baseRequest.getPage(),baseRequest.getLimit());
         List<SysMenuDto> result = roleMenuService.getAllSysMenuList();
@@ -47,6 +49,7 @@ public class RoleMenuController {
      * @return
      */
     @PostMapping(value = "/menu/modify")
+    @AdminUserLogin
     public BaseResponse modifySysMenu(HttpServletRequest request, @RequestBody SysMenuDto sysMenuDto) {
         if (StringUtils.isEmpty(sysMenuDto.getName())
             || sysMenuDto.getType() == null
@@ -129,6 +132,7 @@ public class RoleMenuController {
      * @return
      */
     @GetMapping("/role/list")
+    @AdminUserLogin
     public BaseResponse getAllSysRoleList(HttpServletRequest request, BaseRequest baseRequest) {
         PageHelper.startPage(baseRequest.getPage(), baseRequest.getLimit());
         List<SysRoleDto> returnData = roleMenuService.getAllSysRoleList();
@@ -143,6 +147,7 @@ public class RoleMenuController {
      * @return
      */
     @PostMapping(value = "/role/modify")
+    @AdminUserLogin
     public BaseResponse modifySysRole(HttpServletRequest request, @RequestBody SysRoleDto sysRoleDto) {
         if (StringUtils.isEmpty(sysRoleDto.getName())
             || StringUtils.isEmpty(sysRoleDto.getCode())
@@ -208,6 +213,7 @@ public class RoleMenuController {
      * @return
      */
     @GetMapping("/rolemenu/detail")
+    @AdminUserLogin
     public BaseResponse<List<SysRoleMenuDto>> getSysRoleMenuByRoleId(HttpServletRequest request, @RequestParam("roleId") Integer roleId) {
         if (roleId == null) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -226,6 +232,7 @@ public class RoleMenuController {
      * @return
      */
     @PostMapping(value = "/rolemenu/modify")
+    @AdminUserLogin
     public BaseResponse modifySysRoleMenu(HttpServletRequest request, @RequestParam("roleId") Integer roleId, @RequestParam("menuIds") String menuIds) {
         if (roleId == null || "".equals(menuIds)) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -257,6 +264,7 @@ public class RoleMenuController {
      * @return
      */
     @GetMapping("/user/list")
+    @AdminUserLogin
     public BaseResponse getAllSysUserList(HttpServletRequest request, BaseRequest baseRequest) {
         PageHelper.startPage(baseRequest.getPage(), baseRequest.getLimit());
         List<SysUserDto> returnData = roleMenuService.getAllSysUserList();
@@ -264,6 +272,7 @@ public class RoleMenuController {
     }
 
     @PostMapping("/user/modify")
+    @AdminUserLogin
     public BaseResponse modifySysUser(HttpServletRequest request, @RequestBody SysUserDto sysUserDto) {
         if (StringUtils.isEmpty(sysUserDto.getUsername())
             || StringUtils.isEmpty(sysUserDto.getRealname())
@@ -329,7 +338,7 @@ public class RoleMenuController {
             SysUser sysUser = new SysUser();
             sysUser.setUserSeq(sysUserDto.getUserSeq());
             sysUser.setUsername(sysUserDto.getUsername());
-//            sysUser.setPassword(new BCryptPasswordEncoder().encode(sysUserDto.getPassword()));
+            sysUser.setPassword(MD5Util.MD5EncodeUtf8(sysUserDto.getPassword()));
             sysUser.setRoleNo(sysUserDto.getRoleNo());
             sysUser.setRole(sysUserDto.getRole());
             sysUser.setStatus(sysUserDto.getStatus());
@@ -366,6 +375,7 @@ public class RoleMenuController {
     }
 
     @GetMapping("/user/role")
+    @AdminUserLogin
     public BaseResponse getRoleListByUserSeq(HttpServletRequest request, @RequestParam("userSeq") Integer userSeq) {
         if (userSeq == null) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -376,6 +386,7 @@ public class RoleMenuController {
     }
 
     @PostMapping("/user/role/modify")
+    @AdminUserLogin
     public BaseResponse modifySysUserRoleByUserSeq(HttpServletRequest request, @RequestParam("userSeq") Integer userSeq, @RequestParam("roleIds") String roleIds) {
         if (userSeq == null || "".equals(roleIds)) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());

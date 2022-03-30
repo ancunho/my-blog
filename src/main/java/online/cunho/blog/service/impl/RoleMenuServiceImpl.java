@@ -151,6 +151,10 @@ public class RoleMenuServiceImpl implements RoleMenuService {
         return sysUserMapper.getRoleListByUserSeq(userSeq);
     }
 
+    public SysUserDto getSysUserByUsernameAndPassword(SysUserDto sysUserDto) {
+        return sysUserMapper.getSysUserByUsernameAndPassword(sysUserDto);
+    }
+
     @Transactional
     public void deleteSysUserRoleByUserSeq(Integer userSeq) {
         sysUserRoleMapper.deleteSysUserRoleByUserSeq(userSeq);

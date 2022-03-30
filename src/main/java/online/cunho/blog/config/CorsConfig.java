@@ -51,8 +51,13 @@ public class CorsConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/css/**")
                 .excludePathPatterns("/js/**")
                 .excludePathPatterns("/images/**")
-                .excludePathPatterns("/manager/login")
-                .excludePathPatterns("/manager/logout");
+                .excludePathPatterns("/backend/captcha")
+                .excludePathPatterns("/login")
+                .excludePathPatterns("/logout")
+                .excludePathPatterns("/no_session")
+                .excludePathPatterns("/manage")
+                .excludePathPatterns("/backend/user/login")
+        ;
         WebMvcConfigurer.super.addInterceptors(registry);
     }
 }

@@ -1,5 +1,7 @@
 package online.cunho.blog.controller.backend;
 
+import online.cunho.blog.annotation.AdminUserLogin;
+import online.cunho.blog.annotation.PassLogin;
 import online.cunho.blog.common.BaseResponse;
 import online.cunho.blog.common.Const;
 import online.cunho.blog.common.ResponseCode;
@@ -39,6 +41,7 @@ public class CommonController {
     @Autowired
     private CommonService commonService;
 
+    @PassLogin
     @GetMapping("/backend/captcha")
     public BaseResponse captcha(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String captchaCode = producer.createText();
@@ -67,7 +70,7 @@ public class CommonController {
         return BaseResponse.valueOfSuccess(returnMap);
     }
 
-//    @PreAuthorize("hasRole('ADMIN')")
+    @AdminUserLogin
     @PostMapping(value = "/backend/code/proc")
     public BaseResponse modifyTbCommonCode(HttpServletRequest request, @RequestBody TbCommonCodeDto tbCommonCodeDto) {
         if (StringUtils.isEmpty(tbCommonCodeDto.getCodeName())
@@ -125,6 +128,7 @@ public class CommonController {
         }
     }
 
+    @AdminUserLogin
     @GetMapping(value = "/backend/code/list")
     public BaseResponse getAllTbCommonCodeList(BaseRequest baseRequest) {
         PageHelper.startPage(baseRequest.getPage(), baseRequest.getLimit());
@@ -132,6 +136,7 @@ public class CommonController {
         return BaseResponse.valueOfSuccessList(returnData);
     }
 
+    @AdminUserLogin
     @GetMapping(value = "/backend/code/info")
     public BaseResponse getTbCommonCodeInfoByCodeId(@RequestParam("codeId") Integer codeId) {
         if (codeId == null) {
@@ -142,6 +147,7 @@ public class CommonController {
         return BaseResponse.valueOfSuccess(tbCommonCodeDto);
     }
 
+    @AdminUserLogin
     @GetMapping(value = "/backend/code/type/list")
     public BaseResponse lstTbCommonCodeByCodeType(@RequestParam("codeType") String codeType) {
         if (codeType == null || StringUtils.isEmpty(codeType)) {

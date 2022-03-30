@@ -1,5 +1,6 @@
 package online.cunho.blog.controller.backend;
 
+import online.cunho.blog.annotation.AdminUserLogin;
 import online.cunho.blog.common.BaseResponse;
 import online.cunho.blog.common.ResponseCode;
 import online.cunho.blog.dto.BaseRequest;
@@ -42,6 +43,7 @@ public class PostController {
      * @param tbPostDto
      * @return
      */
+    @AdminUserLogin
     @PostMapping(value = "/list")
     public BaseResponse getAllTbPostListByTbPost(BaseRequest baseRequest, @RequestBody TbPostDto tbPostDto) {
         PageHelper.startPage(baseRequest.getPage(), baseRequest.getLimit());
@@ -56,6 +58,7 @@ public class PostController {
      * @param tbPostDto
      * @return
      */
+    @AdminUserLogin
     @PostMapping(value = "/proc")
     public BaseResponse procTbPostByTbPostDto(HttpServletRequest request, @RequestBody TbPostDto tbPostDto) {
         if (tbPostDto == null
@@ -132,6 +135,7 @@ public class PostController {
         }
     }
 
+    @AdminUserLogin
     @GetMapping(value = "/info")
     public BaseResponse getTbPostByPostId(@RequestParam("postId") Integer postId) {
         if (postId == null) {

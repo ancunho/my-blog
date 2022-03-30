@@ -1,5 +1,6 @@
 package online.cunho.blog.controller.backend;
 
+import online.cunho.blog.annotation.AdminUserLogin;
 import online.cunho.blog.common.BaseResponse;
 import online.cunho.blog.common.ResponseCode;
 import online.cunho.blog.dto.BaseRequest;
@@ -23,6 +24,7 @@ public class RoomController {
     private RoomService roomService;
 
     @PostMapping(value = "/list")
+    @AdminUserLogin
     public BaseResponse getAllRoomList(BaseRequest baseRequest, @RequestBody TbRoomDto tbRoomDto) {
         PageHelper.startPage(baseRequest.getPage(), baseRequest.getLimit());
         List<TbRoomDto> returnData = roomService.getAllRoomList(tbRoomDto);
@@ -30,6 +32,7 @@ public class RoomController {
     }
 
     @PostMapping(value = "/proc")
+    @AdminUserLogin
     public BaseResponse procTbRoomByTbRoomDto(BaseRequest baseRequest, @RequestBody TbRoomDto tbRoomDto) {
         if (tbRoomDto == null
             || tbRoomDto.getShopId() == null
@@ -87,6 +90,7 @@ public class RoomController {
     }
 
     @GetMapping(value = "/info")
+    @AdminUserLogin
     public BaseResponse getTbRoomByRoomId(@RequestParam("roomId") Integer roomId) {
         if (roomId == null) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());

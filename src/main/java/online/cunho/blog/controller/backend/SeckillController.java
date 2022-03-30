@@ -1,5 +1,6 @@
 package online.cunho.blog.controller.backend;
 
+import online.cunho.blog.annotation.AdminUserLogin;
 import online.cunho.blog.common.BaseResponse;
 import online.cunho.blog.service.SeckillService;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,7 @@ public class SeckillController {
     private SeckillService seckillService;
 
     @RequestMapping("/info")
+    @AdminUserLogin
     public BaseResponse selectByPrimaryKey() {
         return BaseResponse.valueOfSuccess(seckillService.selectByPrimaryKey(1000L));
     }

@@ -1,5 +1,6 @@
 package online.cunho.blog.controller.backend;
 
+import online.cunho.blog.annotation.AdminUserLogin;
 import online.cunho.blog.common.BaseResponse;
 import online.cunho.blog.common.ResponseCode;
 import online.cunho.blog.dto.*;
@@ -27,6 +28,7 @@ public class SkuController {
      ***************************************************************** */
 
     @PostMapping(value = "/spu/list")
+    @AdminUserLogin
     public BaseResponse lstTbSpuDto(BaseRequest baseRequest, @RequestBody TbSpuDto tbSpuDto) {
         PageHelper.startPage(baseRequest.getPage(), baseRequest.getLimit());
         List<TbSpuDto> returnData = skuService.lstTbSpu(tbSpuDto);
@@ -34,6 +36,7 @@ public class SkuController {
     }
 
     @GetMapping(value = "/spu/info")
+    @AdminUserLogin
     public BaseResponse getTbSpuInfoBySpuId(BaseRequest baseRequest, @RequestParam("spuId") Integer spuId) {
         if (spuId == null) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -44,6 +47,7 @@ public class SkuController {
     }
 
     @PostMapping(value = "/spu/proc")
+    @AdminUserLogin
     public BaseResponse procTB_SPU(BaseRequest baseRequest, @RequestBody TbSpuDto tbSpuDto) {
         if (StringUtils.isEmpty(tbSpuDto.getSpuName())) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -130,6 +134,7 @@ public class SkuController {
      ***************************************************************** */
 
     @PostMapping(value = "/sku/list")
+    @AdminUserLogin
     public BaseResponse lstTbSkuDto(BaseRequest baseRequest, @RequestBody TbSkuDto tbSkuDto) {
         PageHelper.startPage(baseRequest.getPage(), baseRequest.getLimit());
         List<TbSkuDto> returnData = skuService.lstTbSku(tbSkuDto);
@@ -137,6 +142,7 @@ public class SkuController {
     }
 
     @GetMapping(value = "/sku/info")
+    @AdminUserLogin
     public BaseResponse getTbSkuInfoBySkuId(BaseRequest baseRequest, @RequestParam("skuId") Integer skuId) {
         if (skuId == null) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -149,6 +155,7 @@ public class SkuController {
     }
 
     @GetMapping(value = "/sku/listBySpuId")
+    @AdminUserLogin
     public BaseResponse lstTbSkuBySpuId(BaseRequest baseRequest, @RequestParam("spuId") Integer spuId) {
         PageHelper.startPage(baseRequest.getPage(), baseRequest.getLimit());
         List<TbSkuDto> returnData = skuService.lstTbSkuBySpuId(spuId);
@@ -156,6 +163,7 @@ public class SkuController {
     }
 
     @PostMapping(value = "/sku/proc")
+    @AdminUserLogin
     public BaseResponse procTB_SKU(BaseRequest baseRequest, @RequestBody TbSkuDto tbSkuDto) {
         if (StringUtils.isEmpty(tbSkuDto.getSkuName()) || StringUtils.isEmpty(String.valueOf(tbSkuDto.getSpuId()))) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -266,6 +274,7 @@ public class SkuController {
      ***************************************************************** */
 
     @PostMapping(value = "/spuAttr/list")
+    @AdminUserLogin
     public BaseResponse lstTbSpuAttribute(BaseRequest baseRequest, @RequestBody TbSpuAttributeDto tbSpuAttributeDto) {
         PageHelper.startPage(baseRequest.getPage(), baseRequest.getLimit());
         List<TbSpuAttributeDto> returnData = skuService.lstTbSpuAttribute(tbSpuAttributeDto);
@@ -273,6 +282,7 @@ public class SkuController {
     }
 
     @GetMapping(value = "/spuAttr/info")
+    @AdminUserLogin
     public BaseResponse getTbSpuAttributeInfoBySpuAttrId(BaseRequest baseRequest, @RequestParam("spuAttrId") Integer spuAttrId) {
         if (spuAttrId == null) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -283,6 +293,7 @@ public class SkuController {
     }
 
     @GetMapping(value = "/spuAttr/listBySpuId")
+    @AdminUserLogin
     public BaseResponse lstTbSpuAttributeBySpuId(BaseRequest baseRequest, @RequestParam("spuId") Integer spuId) {
         if (spuId == null) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -294,6 +305,7 @@ public class SkuController {
     }
 
     @GetMapping(value = "/spuAttr/listByAttrId")
+    @AdminUserLogin
     public BaseResponse lstTbSpuAttributeByAttrId(BaseRequest baseRequest, @RequestParam("attrId") Integer attrId) {
         if (attrId == null) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -305,6 +317,7 @@ public class SkuController {
     }
 
     @PostMapping(value = "/spuAttr/proc")
+    @AdminUserLogin
     public BaseResponse procTB_SPU_ATTRIBUTE(BaseRequest baseRequest, @RequestBody TbSpuAttributeDto tbSpuAttributeDto) {
         try {
             if (tbSpuAttributeDto.getSpuAttrId() == null || "".equals(String.valueOf(tbSpuAttributeDto.getSpuAttrId()))) {
@@ -355,6 +368,7 @@ public class SkuController {
      ***************************************************************** */
 
     @PostMapping(value = "/skuAttr/list")
+    @AdminUserLogin
     public BaseResponse lstTbSkuAttribute(BaseRequest baseRequest, @RequestBody TbSkuAttributeDto tbSkuAttributeDto) {
         PageHelper.startPage(baseRequest.getPage(), baseRequest.getLimit());
         List<TbSkuAttributeDto> returnData = skuService.lstTbSkuAttribute(tbSkuAttributeDto);
@@ -362,6 +376,7 @@ public class SkuController {
     }
 
     @GetMapping(value = "/skuAttr/info")
+    @AdminUserLogin
     public BaseResponse getTbSkuAttributeBySkuAttrId(BaseRequest baseRequest, @RequestParam("skuAttrId") Integer skuAttrId) {
         if (skuAttrId == null) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -372,6 +387,7 @@ public class SkuController {
     }
 
     @GetMapping(value = "/skuAttr/listBySkuId")
+    @AdminUserLogin
     public BaseResponse lstTbSkuAttributeBySkuId(BaseRequest baseRequest, @RequestParam("skuId") Integer skuId) {
         if (skuId == null) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -383,6 +399,7 @@ public class SkuController {
     }
 
     @GetMapping(value = "/skuAttr/listByAttrValueId")
+    @AdminUserLogin
     public BaseResponse lstTbSkuAttributeByAttrValueId(BaseRequest baseRequest, @RequestParam("attrValueId") Integer attrValueId) {
         if (attrValueId == null) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -394,6 +411,7 @@ public class SkuController {
     }
 
     @PostMapping(value = "/skuAttr/proc")
+    @AdminUserLogin
     public BaseResponse procTB_SKU_ATTRIBUTE(BaseRequest baseRequest, @RequestBody TbSkuAttributeDto tbSkuAttributeDto) {
         try {
             if (tbSkuAttributeDto.getSkuAttrId() == null || "".equals(String.valueOf(tbSkuAttributeDto.getSkuAttrId()))) {
@@ -451,6 +469,7 @@ public class SkuController {
      ***************************************************************** */
 
     @PostMapping(value = "/attr/list")
+    @AdminUserLogin
     public BaseResponse lstTbAttribute(BaseRequest baseRequest, @RequestBody TbAttributeDto tbAttributeDto) {
         PageHelper.startPage(baseRequest.getPage(), baseRequest.getLimit());
         List<TbAttributeDto> returnData = skuService.lstTbAttribute(tbAttributeDto);
@@ -458,6 +477,7 @@ public class SkuController {
     }
 
     @PostMapping(value = "/attr/list/type/2")
+    @AdminUserLogin
     public BaseResponse lstTbAttributeType2(BaseRequest baseRequest, @RequestBody TbAttributeDto tbAttributeDto) {
         PageHelper.startPage(baseRequest.getPage(), baseRequest.getLimit());
         List<Map<String, Object>> returnData = skuService.lstTbAttributeType2(tbAttributeDto);
@@ -465,6 +485,7 @@ public class SkuController {
     }
 
     @GetMapping(value = "/attr/info")
+    @AdminUserLogin
     public BaseResponse getTbAttributeInfoByAttrId(BaseRequest baseRequest, @RequestParam("attrId") Integer attrId) {
         if (attrId == null) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -475,6 +496,7 @@ public class SkuController {
     }
 
     @PostMapping(value = "/attr/proc")
+    @AdminUserLogin
     public BaseResponse procTB_ATTRIBUTE(BaseRequest baseRequest, @RequestBody TbAttributeDto tbAttributeDto) {
         try {
             if (tbAttributeDto.getAttrId() == null || "".equals(String.valueOf(tbAttributeDto.getAttrId()))) {
@@ -525,6 +547,7 @@ public class SkuController {
      * TB_ATTRIBUTE_VALUE
      ***************************************************************** */
     @PostMapping(value = "/attrValue/list")
+    @AdminUserLogin
     public BaseResponse lstTbAttributeValue(BaseRequest baseRequest, @RequestBody TbAttributeValueDto tbAttributeValueDto) {
         PageHelper.startPage(baseRequest.getPage(), baseRequest.getLimit());
         List<TbAttributeValueDto> lstTbAttributeValue = skuService.lstTbAttributeValue(tbAttributeValueDto);
@@ -532,6 +555,7 @@ public class SkuController {
     }
 
     @PostMapping(value = "/attrValue/listByAttrId")
+    @AdminUserLogin
     public BaseResponse lstTbAttributeValueByAttrId(BaseRequest baseRequest, @RequestBody TbAttributeValueDto tbAttributeValueDto) {
         PageHelper.startPage(baseRequest.getPage(), baseRequest.getLimit());
         List<TbAttributeValueDto> lstTbAttributeValue = skuService.lstTbAttributeValueByAttrId(tbAttributeValueDto);
@@ -540,6 +564,7 @@ public class SkuController {
 
 
     @GetMapping(value = "/attrValue/info")
+    @AdminUserLogin
     public BaseResponse getTbAttributeValueInfoByAttrValueId(BaseRequest baseRequest, @RequestParam("attrValueId") Integer attrValueId) {
         if (attrValueId == null) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -550,6 +575,7 @@ public class SkuController {
     }
 
     @PostMapping(value = "/attrValue/proc")
+    @AdminUserLogin
     public BaseResponse procTB_ATTRIBUTE_VALUE(BaseRequest baseRequest, @RequestBody TbAttributeValueDto tbAttributeValueDto) {
         try {
             if (tbAttributeValueDto.getAttrValueId() == null || "".equals(String.valueOf(tbAttributeValueDto.getAttrValueId()))) {
@@ -603,6 +629,7 @@ public class SkuController {
     }
 
     @DeleteMapping(value = "/attrValue/deleteByAttrValueId")
+    @AdminUserLogin
     public BaseResponse deleteTB_ATTRIBUTE_VALUEByAttrValueId(BaseRequest baseRequest, @RequestParam("attrValueId") Integer attrValueId) {
         if (attrValueId == null) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -623,6 +650,7 @@ public class SkuController {
      * TB_CLASSIFICATION
      ***************************************************************** */
     @PostMapping(value = "/classification/list")
+    @AdminUserLogin
     public BaseResponse lstTbClassification(BaseRequest baseRequest, @RequestBody TbClassificationDto tbClassificationDto) {
         PageHelper.startPage(baseRequest.getPage(), baseRequest.getLimit());
         List<TbClassificationDto> lstTbClassification = skuService.lstTbClassification(tbClassificationDto);
@@ -630,6 +658,7 @@ public class SkuController {
     }
 
     @PostMapping(value = "/classification/info")
+    @AdminUserLogin
     public BaseResponse getTbClassificationInfoByClassificationId(BaseRequest baseRequest, @RequestParam("classificationId") Integer classificationId) {
         if (classificationId == null) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -640,6 +669,7 @@ public class SkuController {
     }
 
     @PostMapping(value = "/classification/proc")
+    @AdminUserLogin
     public BaseResponse procTB_CLASSIFICATION(BaseRequest baseRequest, @RequestBody TbClassificationDto tbClassificationDto) {
         try {
             if (tbClassificationDto.getClassificationId() == null || "".equals(String.valueOf(tbClassificationDto.getClassificationId()))) {
@@ -695,6 +725,7 @@ public class SkuController {
     }
 
     @PostMapping(value = "/classification/list/byParentClassificationId")
+    @AdminUserLogin
     public BaseResponse lstTbClassificationByParentClassificationId(BaseRequest baseRequest, @RequestParam(value = "parentClassificationId", defaultValue = "0") Integer parentClassificationId) {
         if (parentClassificationId == null) {
             return BaseResponse.valueOfFailureCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());

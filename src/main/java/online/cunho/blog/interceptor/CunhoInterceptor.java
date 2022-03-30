@@ -1,12 +1,20 @@
 package online.cunho.blog.interceptor;
 
+import online.cunho.blog.annotation.AdminUserLogin;
+import online.cunho.blog.annotation.PassLogin;
+import online.cunho.blog.dto.SysUserDto;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.lang.reflect.Method;
 
 public class CunhoInterceptor implements HandlerInterceptor {
+
+
 
     /**
      * 在DispatcherServlet处理方法之前执行，一般用来做一些准备工作：比如日志，权限检查
@@ -15,10 +23,35 @@ public class CunhoInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-//        return HandlerInterceptor.super.preHandle(request, response, handler);
-//        System.out.println("执行preHandler..." + request.getRemoteAddr() + request.getRemoteUser());
-//        System.out.println(">>>>..." + request.getHeader("User-Agent") + "||" + request.getHeader("Referer") + "||" + request.getRequestURI() + "||" + request.getRequestURL() + "||" + request.getRemoteUser());
-        return true;
+        // 1. 如果不是映射到方法直接通过
+        if(!(handler instanceof HandlerMethod)) {
+            return true;
+        }
+
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
+        Method method = handlerMethod.getMethod();
+
+        if (method.isAnnotationPresent(PassLogin.class)) {
+            PassLogin passLogin = method.getAnnotation(PassLogin.class);
+            if (passLogin.required()) {
+                return true;
+            }
+        }
+
+        if (method.isAnnotationPresent(AdminUserLogin.class)) {
+            AdminUserLogin adminUserLogin = method.getAnnotation(AdminUserLogin.class);
+            if (adminUserLogin.required()) {
+                HttpSession session = request.getSession(true);
+                SysUserDto sysUserDto = (SysUserDto) session.getAttribute("LOGIN_USER");
+                if (sysUserDto == null) {
+                    System.out.println(">>>>>need Login");
+                    throw new RuntimeException("need Login");
+                }
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

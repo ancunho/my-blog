@@ -73,6 +73,7 @@ public class Const {
         String PARAMETER_ERROR  = "参数错误";
         String USERNAME_OR_PASSWORD_NOT_FOUND = "用户名或密码不正确";
         String CAPTCHAR_KEY_ERROR = "验证码错误";
+        String NO_SESSION = "Session过期";
     }
 
     public interface FileType {

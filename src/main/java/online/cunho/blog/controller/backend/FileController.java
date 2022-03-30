@@ -1,5 +1,6 @@
 package online.cunho.blog.controller.backend;
 
+import online.cunho.blog.annotation.AdminUserLogin;
 import online.cunho.blog.common.BaseResponse;
 import online.cunho.blog.common.Const;
 import online.cunho.blog.common.ResponseCode;
@@ -32,6 +33,7 @@ public class FileController {
     @Autowired
     private FileService fileService;
 
+    @AdminUserLogin
     @PostMapping(value = "/upload")
     public Map<String, Object> file_upload_return_url(HttpServletRequest request, @RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
         Map<String, Object> result = new HashMap<>();
@@ -52,6 +54,7 @@ public class FileController {
         return result;
     }
 
+    @AdminUserLogin
     @PostMapping(value = "/single/image/upload")
     public Map<String, Object> image_upload_return_url(HttpServletRequest request, @RequestBody TbFileListDto tbFileListDto, @RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
         Map<String, Object> result = new HashMap<>();
@@ -68,6 +71,7 @@ public class FileController {
         return result;
     }
 
+    @AdminUserLogin
     @PostMapping(value = "/multie/image/upload")
     public BaseResponse image_multie_upload_return_url(HttpServletRequest request, @RequestParam("imageFiles") List<MultipartFile> multipartFileList, @RequestParam("authors") String username) {
         try {
@@ -128,6 +132,7 @@ public class FileController {
 
     }
 
+    @AdminUserLogin
     @PostMapping(value = "/single/image/delete")
     public BaseResponse image_delete(HttpServletRequest request, @RequestParam("imageUrl") String imageUrl) throws Exception {
         if (imageUrl == null || "".equals(imageUrl)) {
@@ -140,6 +145,7 @@ public class FileController {
         return BaseResponse.valueOfSuccessMessage("删除成功");
     }
 
+    @AdminUserLogin
     @PostMapping(value = "/list")
     public BaseResponse getAllTbFileList(BaseRequest baseRequest, @RequestBody TbFileListDto tbFileListDto) {
         PageHelper.startPage(baseRequest.getPage(), baseRequest.getLimit());
@@ -147,6 +153,7 @@ public class FileController {
         return BaseResponse.valueOfSuccessList(returnData);
     }
 
+    @AdminUserLogin
     @GetMapping(value = "/info")
     public BaseResponse getTbFileListInfoByFileId(BaseRequest baseRequest, @RequestParam("fileId") Integer fileId) {
         if (fileId == null) {

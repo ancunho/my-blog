@@ -1,5 +1,7 @@
 package online.cunho.blog.controller.backend;
 
+import online.cunho.blog.annotation.AdminUserLogin;
+import online.cunho.blog.annotation.PassLogin;
 import online.cunho.blog.common.BaseResponse;
 import online.cunho.blog.common.ResponseCode;
 import online.cunho.blog.dto.BaseRequest;
@@ -23,6 +25,7 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
 
+    @AdminUserLogin
     @PostMapping(value = "/list")
     public BaseResponse getAllBookingList(BaseRequest baseRequest, @RequestBody TbBookingDto tbBookingDto) {
         PageHelper.startPage(baseRequest.getPage(), baseRequest.getLimit());
@@ -30,6 +33,7 @@ public class BookingController {
         return BaseResponse.valueOfSuccessList(returnData);
     }
 
+    @AdminUserLogin
     @PostMapping(value = "/proc")
     public BaseResponse procTbBookingByTbBookingDto(BaseRequest baseRequest, @RequestBody TbBookingDto tbBookingDto) {
         if (StringUtils.isEmpty(tbBookingDto.getBookingStartday())
@@ -110,6 +114,7 @@ public class BookingController {
         }
     }
 
+    @AdminUserLogin
     @GetMapping(value = "/info")
     public BaseResponse getBookingInfoByBookingId(BaseRequest baseRequest, @RequestParam("bookingId") Integer bookingId) {
         if (bookingId == null) {

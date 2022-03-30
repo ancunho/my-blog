@@ -1,6 +1,6 @@
 package online.cunho.blog;
 
-import online.cunho.blog.config.CunhoSessionListener;
+import online.cunho.blog.listener.CunhoSessionListener;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 
-import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
 @SpringBootApplication

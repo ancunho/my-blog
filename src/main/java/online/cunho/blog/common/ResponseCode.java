@@ -20,6 +20,8 @@ public enum ResponseCode {
     SAVE_ERROR(2999, "保存失败"),
     DELETE_SUCCESS(3000, "删除成功"),
     DELETE_ERROR(3999, "删除失败"),
+
+    LOGIN_EXPIRED(9999, "Session超时"),
     ;
 
 

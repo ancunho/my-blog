@@ -24,4 +24,6 @@ public interface SysUserMapper {
     Integer existUserName(Map<String, Object> mapParams);
 
     List<SysUserDto> getRoleListByUserSeq(Integer userSeq);
+
+    SysUserDto getSysUserByUsernameAndPassword(SysUserDto sysUserDto);
 }
