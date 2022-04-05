@@ -28,16 +28,16 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from sys_menu
+        from SYS_MENU
         where ID = #{id,jdbcType=BIGINT}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete
-        from sys_menu
+        from SYS_MENU
         where ID = #{id,jdbcType=BIGINT}
     </delete>
     <insert id="insert" parameterType="online.cunho.blog.entity.SysMenu">
-        insert into sys_menu (ID, PARENT_ID, `NAME`,
+        insert into SYS_MENU (ID, PARENT_ID, `NAME`,
                               `PATH`, PERMS, COMPONENT,
                               `TYPE`, ICON, ORDER_NUM,
                               OPTION01, OPTION02, OPTION03,
@@ -51,7 +51,7 @@
                 #{updatetime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER})
     </insert>
     <insert id="insertSelective" parameterType="online.cunho.blog.entity.SysMenu">
-        insert into sys_menu
+        insert into SYS_MENU
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 ID,
@@ -150,7 +150,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="online.cunho.blog.entity.SysMenu">
-        update sys_menu
+        update SYS_MENU
         <set>
             <if test="parentId != null">
                 PARENT_ID = #{parentId,jdbcType=BIGINT},
@@ -199,7 +199,7 @@
         where ID = #{id,jdbcType=BIGINT}
     </update>
     <update id="updateByPrimaryKey" parameterType="online.cunho.blog.entity.SysMenu">
-        update sys_menu
+        update SYS_MENU
         set PARENT_ID  = #{parentId,jdbcType=BIGINT},
             `NAME`     = #{name,jdbcType=VARCHAR},
             `PATH`     = #{path,jdbcType=VARCHAR},

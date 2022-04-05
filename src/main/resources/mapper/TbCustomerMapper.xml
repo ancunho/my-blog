@@ -39,16 +39,16 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from tb_customer
+        from TB_CUSTOMER
         where CUSTOMER_ID = #{customerId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
-        from tb_customer
+        from TB_CUSTOMER
         where CUSTOMER_ID = #{customerId,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="online.cunho.blog.entity.TbCustomer">
-        insert into tb_customer (CUSTOMER_ID, WEIXIN_OPEN_ID, WEIXIN_UNION_ID,
+        insert into TB_CUSTOMER (CUSTOMER_ID, WEIXIN_OPEN_ID, WEIXIN_UNION_ID,
                                  USERNAME, `PASSWORD`, MOBILE_NO,
                                  NICKNAME, GRADE, CUSTOMER_TYPE,
                                  REALNAME, BIRTHDAY, SEX,
@@ -71,7 +71,7 @@
         <selectKey keyProperty="customerId" resultType="int" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into tb_customer
+        insert into TB_CUSTOMER
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="customerId != null">
                 CUSTOMER_ID,
@@ -224,7 +224,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="online.cunho.blog.entity.TbCustomer">
-        update tb_customer
+        update TB_CUSTOMER
         <set>
             <if test="weixinOpenId != null">
                 WEIXIN_OPEN_ID = #{weixinOpenId,jdbcType=VARCHAR},
@@ -300,7 +300,7 @@
         where CUSTOMER_ID = #{customerId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="online.cunho.blog.entity.TbCustomer">
-        update tb_customer
+        update TB_CUSTOMER
         set WEIXIN_OPEN_ID  = #{weixinOpenId,jdbcType=VARCHAR},
             WEIXIN_UNION_ID = #{weixinUnionId,jdbcType=VARCHAR},
             USERNAME        = #{username,jdbcType=VARCHAR},

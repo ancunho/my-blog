@@ -12,7 +12,7 @@
     <select id="selectSysUserByUsername" parameterType="java.lang.String" resultType="online.cunho.blog.entity.SysUser">
         select
         <include refid="Base_Column_List_Except_Password"/>
-        from sys_user
+        from SYS_USER
         where USERNAME = #{username}
     </select>
 

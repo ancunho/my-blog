@@ -37,16 +37,16 @@
         <include refid="Base_Column_List"/>
         ,
         <include refid="Blob_Column_List"/>
-        from tb_base_date
+        from TB_BASE_DATE
         where BASE_YMD = #{baseYmd,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete
-        from tb_base_date
+        from TB_BASE_DATE
         where BASE_YMD = #{baseYmd,jdbcType=VARCHAR}
     </delete>
     <insert id="insert" parameterType="online.cunho.blog.entity.TbBaseDate">
-        insert into tb_base_date (BASE_YMD, BASE_YYYY, BASE_MM,
+        insert into TB_BASE_DATE (BASE_YMD, BASE_YYYY, BASE_MM,
                                   BASE_DD, BASE_WEEKDAY, BASE_WEEKDAY_NAME,
                                   BASE_WW, LUNAR_YMD, HOLIDAY_YN,
                                   HOLIDAY_NAME, USE_YN, OPTION01,
@@ -62,7 +62,7 @@
                 #{memo,jdbcType=LONGVARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="online.cunho.blog.entity.TbBaseDate">
-        insert into tb_base_date
+        insert into TB_BASE_DATE
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="baseYmd != null">
                 BASE_YMD,
@@ -183,7 +183,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="online.cunho.blog.entity.TbBaseDate">
-        update tb_base_date
+        update TB_BASE_DATE
         <set>
             <if test="baseYyyy != null">
                 BASE_YYYY = #{baseYyyy,jdbcType=VARCHAR},
@@ -243,7 +243,7 @@
         where BASE_YMD = #{baseYmd,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKeyWithBLOBs" parameterType="online.cunho.blog.entity.TbBaseDate">
-        update tb_base_date
+        update TB_BASE_DATE
         set BASE_YYYY         = #{baseYyyy,jdbcType=VARCHAR},
             BASE_MM           = #{baseMm,jdbcType=VARCHAR},
             BASE_DD           = #{baseDd,jdbcType=VARCHAR},
@@ -265,7 +265,7 @@
         where BASE_YMD = #{baseYmd,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="online.cunho.blog.entity.TbBaseDate">
-        update tb_base_date
+        update TB_BASE_DATE
         set BASE_YYYY         = #{baseYyyy,jdbcType=VARCHAR},
             BASE_MM           = #{baseMm,jdbcType=VARCHAR},
             BASE_DD           = #{baseDd,jdbcType=VARCHAR},

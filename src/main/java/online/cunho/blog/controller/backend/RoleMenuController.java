@@ -393,10 +393,10 @@ public class RoleMenuController {
         }
 
         try {
-            // 1. Delete sys_user_role by userSeq
+            // 1. Delete SYS_USER_ROLE by userSeq
             roleMenuService.deleteSysUserRoleByUserSeq(userSeq);
 
-            // 2. Insert new data to sys_user_role
+            // 2. Insert new data to SYS_USER_ROLE
             List<String> lstRoleIds = Arrays.asList(roleIds.split(","));
             Map<String, Object> mapParams = new HashMap<>();
             mapParams.put("userSeq", userSeq);

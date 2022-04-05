@@ -13,20 +13,20 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from sys_role_menu
+        from SYS_ROLE_MENU
         where ID = #{id,jdbcType=BIGINT}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete
-        from sys_role_menu
+        from SYS_ROLE_MENU
         where ID = #{id,jdbcType=BIGINT}
     </delete>
     <insert id="insert" parameterType="online.cunho.blog.entity.SysRoleMenu">
-        insert into sys_role_menu (ID, ROLE_ID, MENU_ID)
+        insert into SYS_ROLE_MENU (ID, ROLE_ID, MENU_ID)
         values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{menuId,jdbcType=BIGINT})
     </insert>
     <insert id="insertSelective" parameterType="online.cunho.blog.entity.SysRoleMenu">
-        insert into sys_role_menu
+        insert into SYS_ROLE_MENU
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 ID,
@@ -51,7 +51,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="online.cunho.blog.entity.SysRoleMenu">
-        update sys_role_menu
+        update SYS_ROLE_MENU
         <set>
             <if test="roleId != null">
                 ROLE_ID = #{roleId,jdbcType=BIGINT},
@@ -63,7 +63,7 @@
         where ID = #{id,jdbcType=BIGINT}
     </update>
     <update id="updateByPrimaryKey" parameterType="online.cunho.blog.entity.SysRoleMenu">
-        update sys_role_menu
+        update SYS_ROLE_MENU
         set ROLE_ID = #{roleId,jdbcType=BIGINT},
             MENU_ID = #{menuId,jdbcType=BIGINT}
         where ID = #{id,jdbcType=BIGINT}

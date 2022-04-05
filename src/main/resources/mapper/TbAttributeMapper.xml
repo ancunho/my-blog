@@ -25,16 +25,16 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from tb_attribute
+        from TB_ATTRIBUTE
         where ATTR_ID = #{attrId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
-        from tb_attribute
+        from TB_ATTRIBUTE
         where ATTR_ID = #{attrId,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="online.cunho.blog.entity.TbAttribute">
-        insert into tb_attribute (ATTR_ID, ATTR_NAME, ATTR_TYPE,
+        insert into TB_ATTRIBUTE (ATTR_ID, ATTR_NAME, ATTR_TYPE,
                                   `STATUS`, ATTR_IMAGE, OPTION01, OPTION02,
                                   OPTION03, OPTION04, OPTION05,
                                   CREATE_TIME, UPDATE_TIME)
@@ -44,7 +44,7 @@
                 #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
     </insert>
     <insert id="insertSelective" parameterType="online.cunho.blog.entity.TbAttribute">
-        insert into tb_attribute
+        insert into TB_ATTRIBUTE
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="attrId != null">
                 ATTR_ID,
@@ -113,7 +113,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="online.cunho.blog.entity.TbAttribute">
-        update tb_attribute
+        update TB_ATTRIBUTE
         <set>
             <if test="attrName != null">
                 ATTR_NAME = #{attrName,jdbcType=VARCHAR},
@@ -147,7 +147,7 @@
         where ATTR_ID = #{attrId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="online.cunho.blog.entity.TbAttribute">
-        update tb_attribute
+        update TB_ATTRIBUTE
         set ATTR_NAME   = #{attrName,jdbcType=VARCHAR},
             ATTR_TYPE   = #{attrType,jdbcType=VARCHAR},
             `STATUS`    = #{status,jdbcType=VARCHAR},

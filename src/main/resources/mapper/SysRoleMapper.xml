@@ -19,18 +19,18 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from sys_role
+        from SYS_ROLE
         where ID = #{id,jdbcType=BIGINT}
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete
-        from sys_role
+        from SYS_ROLE
         where ID = #{id,jdbcType=BIGINT}
     </delete>
 
     <insert id="insert" parameterType="online.cunho.blog.entity.SysRole">
-        insert into sys_role (ID, `NAME`, CODE,
+        insert into SYS_ROLE (ID, `NAME`, CODE,
                               REMARK, CREATETIME, UPDATETIME,
                               `STATUS`)
         values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR},
@@ -39,7 +39,7 @@
     </insert>
 
     <insert id="insertSelective" parameterType="online.cunho.blog.entity.SysRole">
-        insert into sys_role
+        insert into SYS_ROLE
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 ID,
@@ -79,7 +79,7 @@
     </insert>
 
     <update id="updateByPrimaryKeySelective" parameterType="online.cunho.blog.entity.SysRole">
-        update sys_role
+        update SYS_ROLE
         <set>
             <if test="name != null">
                 `NAME` = #{name,jdbcType=VARCHAR},
@@ -99,7 +99,7 @@
     </update>
 
     <update id="updateByPrimaryKey" parameterType="online.cunho.blog.entity.SysRole">
-        update sys_role
+        update SYS_ROLE
         set `NAME`     = #{name,jdbcType=VARCHAR},
             CODE       = #{code,jdbcType=VARCHAR},
             REMARK     = #{remark,jdbcType=VARCHAR},

@@ -1,5 +1,5 @@
 -- POST表
-CREATE TABLE IF NOT EXISTS `cunho_post` (
+CREATE TABLE IF NOT EXISTS `CUNHO_POST` (
                                         `POST_ID` INT NOT NULL AUTO_INCREMENT,
                                         `POST_CATEGORY` INT NULL COMMENT '文章分类',
                                         `POST_AUTHOR` VARCHAR(45) NULL COMMENT '作者',
@@ -23,7 +23,7 @@ PRIMARY KEY (`POST_ID`)
 ENGINE = InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- 用户表
-CREATE TABLE IF NOT EXISTS `cunho_user` (
+CREATE TABLE IF NOT EXISTS `CUNHO_USER` (
                                         `USER_ID` INT NOT NULL AUTO_INCREMENT,
                                         `USERNAME` VARCHAR(45) NULL,
                                         `PASSWORD` VARCHAR(100) NULL,

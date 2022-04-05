@@ -23,16 +23,16 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from tb_common_code
+        from TB_COMMON_CODE
         where CODE_ID = #{codeId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
-        from tb_common_code
+        from TB_COMMON_CODE
         where CODE_ID = #{codeId,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="online.cunho.blog.entity.TbCommonCode">
-        insert into tb_common_code (CODE_ID, CODE_TYPE, CODE_CD,
+        insert into TB_COMMON_CODE (CODE_ID, CODE_TYPE, CODE_CD,
                                     CODE_NAME, USE_YN, REMARK,
                                     OPTION01, OPTION02, OPTION03,
                                     OPTION04, OPTION05, CREATE_TIME,
@@ -44,7 +44,7 @@
                 #{updateTime,jdbcType=TIMESTAMP})
     </insert>
     <insert id="insertSelective" parameterType="online.cunho.blog.entity.TbCommonCode">
-        insert into tb_common_code
+        insert into TB_COMMON_CODE
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="codeId != null">
                 CODE_ID,
@@ -119,7 +119,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="online.cunho.blog.entity.TbCommonCode">
-        update tb_common_code
+        update TB_COMMON_CODE
         <set>
             <if test="codeType != null">
                 CODE_TYPE = #{codeType,jdbcType=VARCHAR},
@@ -156,7 +156,7 @@
         where CODE_ID = #{codeId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="online.cunho.blog.entity.TbCommonCode">
-        update tb_common_code
+        update TB_COMMON_CODE
         set CODE_TYPE   = #{codeType,jdbcType=VARCHAR},
             CODE_CD     = #{codeCd,jdbcType=VARCHAR},
             CODE_NAME   = #{codeName,jdbcType=VARCHAR},

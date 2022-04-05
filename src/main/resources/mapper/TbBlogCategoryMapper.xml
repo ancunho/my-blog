@@ -24,16 +24,16 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from tb_blog_category
+        from TB_BLOG_CATEGORY
         where CATEGORY_ID = #{categoryId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
-        from tb_blog_category
+        from TB_BLOG_CATEGORY
         where CATEGORY_ID = #{categoryId,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="online.cunho.blog.entity.TbBlogCategory">
-        insert into tb_blog_category (CATEGORY_ID, PARENT_CATEGORY_ID, CATEGORY_NAME,
+        insert into TB_BLOG_CATEGORY (CATEGORY_ID, PARENT_CATEGORY_ID, CATEGORY_NAME,
                                       CATEGORY_TYPE, SORT_ORDER, `STATUS`,
                                       OPTION01, OPTION02, OPTION03,
                                       OPTION04, OPTION05, CREATE_TIME,
@@ -45,7 +45,7 @@
                 #{updateTime,jdbcType=TIMESTAMP})
     </insert>
     <insert id="insertSelective" parameterType="online.cunho.blog.entity.TbBlogCategory">
-        insert into tb_blog_category
+        insert into TB_BLOG_CATEGORY
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="categoryId != null">
                 CATEGORY_ID,
@@ -120,7 +120,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="online.cunho.blog.entity.TbBlogCategory">
-        update tb_blog_category
+        update TB_BLOG_CATEGORY
         <set>
             <if test="parentCategoryId != null">
                 PARENT_CATEGORY_ID = #{parentCategoryId,jdbcType=INTEGER},
@@ -157,7 +157,7 @@
         where CATEGORY_ID = #{categoryId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="online.cunho.blog.entity.TbBlogCategory">
-        update tb_blog_category
+        update TB_BLOG_CATEGORY
         set PARENT_CATEGORY_ID = #{parentCategoryId,jdbcType=INTEGER},
             CATEGORY_NAME      = #{categoryName,jdbcType=VARCHAR},
             CATEGORY_TYPE      = #{categoryType,jdbcType=VARCHAR},

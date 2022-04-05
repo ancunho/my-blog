@@ -45,16 +45,16 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from sys_user
+        from SYS_USER
         where USER_SEQ = #{userSeq,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
-        from sys_user
+        from SYS_USER
         where USER_SEQ = #{userSeq,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="online.cunho.blog.entity.SysUser">
-        insert into sys_user (USER_SEQ, OPENID, UNIONID,
+        insert into SYS_USER (USER_SEQ, OPENID, UNIONID,
                               USERNAME, `PASSWORD`, ROLE_NO,
                               `ROLE`, `STATUS`, USER_TYPE,
                               REALNAME, COMPANY, COMPANY_TYPE,
@@ -78,7 +78,7 @@
                 #{updatetime,jdbcType=TIMESTAMP})
     </insert>
     <insert id="insertSelective" parameterType="online.cunho.blog.entity.SysUser">
-        insert into sys_user
+        insert into SYS_USER
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="userSeq != null">USER_SEQ,</if>
             <if test="openid != null">OPENID,</if>
@@ -145,7 +145,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="online.cunho.blog.entity.SysUser">
-        update sys_user
+        update SYS_USER
         <set>
             <if test="openid != null">
                 OPENID = #{openid,jdbcType=VARCHAR},
@@ -236,7 +236,7 @@
         where USER_SEQ = #{userSeq,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="online.cunho.blog.entity.SysUser">
-        update sys_user
+        update SYS_USER
         set OPENID        = #{openid,jdbcType=VARCHAR},
             UNIONID       = #{unionid,jdbcType=VARCHAR},
             USERNAME      = #{username,jdbcType=VARCHAR},
