@@ -14,7 +14,7 @@ public class CunhoSessionListener implements HttpSessionListener {
 
     @Override
     public void sessionCreated(HttpSessionEvent se) {
-        se.getSession().setMaxInactiveInterval(60 * 60 * 2); //단위:초
+        se.getSession().setMaxInactiveInterval(60 * 60); //단위:초
     }
 
     @Override

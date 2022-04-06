@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:replace="include/meta::meta"></div>
+<head th:fragment="meta" xmlns:th="https://www.thymeleaf.org">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ㅅㄷㄴㅅ</title>
+</head>
 <title>Home</title>
 <body>
-<h2 id="intro">{{ introText }}</h2>
+<user-card name="cunho"></user-card>
+<user-card name="asdfasdf"></user-card>
 </body>
 <script>
-    Vue.createApp({
-        data() {
-            return {
-                introText: 'asdfsadfsadf',
-            }
-        },
-        methods: {
+class UserCard extends HTMLElement {
+    constructor() {
+        super();
+        this.attachShadow({ mode: 'open'});
+        this.shadowRoot.appendChild()
+    }
+}
 
-        }
-    }).mount("#intro")
+window.customElements.define('user-card', UserCard);
 </script>
 </html>
