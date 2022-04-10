@@ -3,12 +3,17 @@ package online.cunho.blog.config;
 import online.cunho.blog.interceptor.CunhoInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.CacheControl;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.resource.GzipResourceResolver;
+
+import java.util.concurrent.TimeUnit;
 
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {
@@ -60,5 +65,17 @@ public class CorsConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/backend/user/login")
         ;
         WebMvcConfigurer.super.addInterceptors(registry);
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**,/css/**").addResourceLocations("/static/,/css/")
+                .setCacheControl(CacheControl.maxAge(10, TimeUnit.MINUTES).cachePrivate())
+                .resourceChain(true)
+                .addResolver(new GzipResourceResolver());
+        WebMvcConfigurer.super.addResourceHandlers(registry);
+
+
+
     }
 }
