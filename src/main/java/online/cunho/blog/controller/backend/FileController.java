@@ -55,6 +55,27 @@ public class FileController {
     }
 
     @AdminUserLogin
+    @PostMapping(value = "/wangEditor/single/upload")
+    public Map<String, Object> file_wangEditor_upload_return_url(HttpServletRequest request, @RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
+        Map<String, Object> result = new HashMap<>();
+//        for (MultipartFile file : multipartFiles) {
+        //Const.UPLOAD_IMAGE_MAX_SIZE : 2MB
+        if (file.getSize() > 0 && file.getSize() <= (Const.UPLOAD_IMAGE_MAX_SIZE * 20)) {
+            String file_path_url = aliyunService.uploadFileReturnURL(file);
+            Map<String, String> returnData = new HashMap<>();
+            returnData.put("url", file_path_url);
+            result.put("errno", 0);
+            result.put("data", returnData);
+
+        } else {
+            result.put("errno", 1);
+            result.put("message", "上传失败");
+        }
+//        }
+        return result;
+    }
+
+    @AdminUserLogin
     @PostMapping(value = "/single/image/upload")
     public Map<String, Object> image_upload_return_url(HttpServletRequest request, @RequestBody TbFileListDto tbFileListDto, @RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
         Map<String, Object> result = new HashMap<>();
