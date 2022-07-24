@@ -3,7 +3,14 @@
 <head th:fragment="meta" xmlns:th="https://www.thymeleaf.org">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!--    <link rel="stylesheet" href="http://localhost:4001/static/css/default.css" />-->
+    <style type="text/css">
+        @font-face {
+            font-family: 'Spotlight';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Medium.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
     <link th:href="@{/css/default.css}" rel="stylesheet">
     <link th:href="@{/css/chunk-vendors-blog.css}" rel="stylesheet">
     <link th:href="@{/css/app-blog.css}" rel="stylesheet">

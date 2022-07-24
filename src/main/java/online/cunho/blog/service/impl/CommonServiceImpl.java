@@ -1,13 +1,16 @@
 package online.cunho.blog.service.impl;
 
+import online.cunho.blog.dao.TbAccessHistMapper;
 import online.cunho.blog.dao.TbCommonCodeMapper;
 import online.cunho.blog.dto.TbCommonCodeDto;
+import online.cunho.blog.entity.TbAccessHist;
 import online.cunho.blog.entity.TbCommonCode;
 import online.cunho.blog.service.CommonService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +26,15 @@ public class CommonServiceImpl implements CommonService {
 
     @Resource
     private TbCommonCodeMapper tbCommonCodeMapper;
+
+    @Autowired
+    private TbAccessHistMapper tbAccessHistMapper;
+
+
+    @Transactional
+    public void insertTbAccessHist(TbAccessHist tbAccessHist) {
+        tbAccessHistMapper.insertSelective(tbAccessHist);
+    }
 
     @Transactional
     public Boolean insertTbCommonCode(TbCommonCode tbCommonCode) {

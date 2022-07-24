@@ -1,6 +1,7 @@
 package online.cunho.blog.controller.backend;
 
 import online.cunho.blog.annotation.AdminUserLogin;
+import online.cunho.blog.annotation.PassLogin;
 import online.cunho.blog.common.BaseResponse;
 import online.cunho.blog.common.Const;
 import online.cunho.blog.common.ResponseCode;
@@ -54,7 +55,7 @@ public class FileController {
         return result;
     }
 
-    @AdminUserLogin
+    @PassLogin
     @PostMapping(value = "/wangEditor/single/upload")
     public Map<String, Object> file_wangEditor_upload_return_url(HttpServletRequest request, @RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
         Map<String, Object> result = new HashMap<>();

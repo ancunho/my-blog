@@ -38,7 +38,8 @@
         <javaClientGenerator targetProject="src\main\java"
                              targetPackage="online.cunho.blog.dao"
                              type="XMLMAPPER" />
-        <table tableName="cunho_post" domainObjectName="CunhoPost" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
-        <table tableName="cunho_user" domainObjectName="CunhoUser" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+<!--        <table tableName="cunho_post" domainObjectName="CunhoPost" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />-->
+<!--        <table tableName="cunho_user" domainObjectName="CunhoUser" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />-->
+        <table tableName="tb_access_hist" domainObjectName="TbAccessHist" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
     </context>
 </generatorConfiguration>

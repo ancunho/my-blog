@@ -18,6 +18,11 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {
 
+    @Bean
+    public CunhoInterceptor cunhoInterceptor() {
+        return new CunhoInterceptor();
+    }
+
     private CorsConfiguration buildConfig() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.addAllowedOrigin("*");
@@ -50,7 +55,7 @@ public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 //        WebMvcConfigurer.super.addInterceptors(registry);
-        registry.addInterceptor(new CunhoInterceptor())
+        registry.addInterceptor(cunhoInterceptor())
                 .addPathPatterns("/**")
                 .excludePathPatterns("/static/**")
                 .excludePathPatterns("/css/**")
